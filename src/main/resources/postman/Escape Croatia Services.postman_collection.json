@@ -1,0 +1,69 @@
+{
+	"info": {
+		"_postman_id": "d3852de5-2aa8-45ac-a61c-9ddc0962ffbf",
+		"name": "Escape Croatia Services",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "City",
+			"item": [
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/city",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"city"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/city/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"city",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ping",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/ping",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ping"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
