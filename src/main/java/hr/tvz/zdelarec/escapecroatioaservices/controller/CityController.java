@@ -19,12 +19,12 @@ public class CityController {
     private CityService cityService;
 
     @GetMapping(produces = CityDto.CONTENT_TYPE)
-    public List<City> getAll(){
+    public List<CityDto> getAll(){
         return cityService.getAllCities();
     }
 
     @GetMapping(path="/{id}", produces = CityDto.CONTENT_TYPE)
-    public City getById(@PathVariable("id") final Integer id){
-        return cityService.getCityById(id).orElseThrow();
+    public CityDto getById(@PathVariable("id") final Integer id){
+        return cityService.getCityById(id);
     }
 }

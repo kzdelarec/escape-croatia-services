@@ -1,9 +1,8 @@
 package hr.tvz.zdelarec.escapecroatioaservices.service.city;
 
-import hr.tvz.zdelarec.escapecroatioaservices.entity.City;
+import hr.tvz.zdelarec.escapecroatioaservices.dto.CityDto;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * City service
@@ -13,15 +12,15 @@ import java.util.Optional;
 public interface CityService {
 
     /**
-     * Method for fetching {@link List} of {@link City} objects.
-     * @return {@link List} of {@link City} objects
+     * Method for fetching {@link List} of {@link CityDto} objects.
+     * @return {@link List} of {@link CityDto} objects
      */
-    List<City> getAllCities();
+    List<CityDto> getAllCities();
 
     /**
-     * Method for fetching one {@link City} by id.
-     * @param id {@link City} id
-     * @return {@link City} object
+     * Method for fetching one {@link CityDto} by id.
+     * @param id {@link CityDto} id
+     * @return {@link CityDto} object
      */
-    Optional<City> getCityById(Integer id);
+    CityDto getCityById(Integer id);
 }
