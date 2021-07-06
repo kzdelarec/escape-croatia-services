@@ -14,11 +14,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/city",
+							"raw": "https://localhost:8443/city",
+							"protocol": "https",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
+							"port": "8443",
 							"path": [
 								"city"
 							]
@@ -32,11 +33,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/city/3",
+							"raw": "https://localhost:8443/city/3",
+							"protocol": "https",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
+							"port": "8443",
 							"path": [
 								"city",
 								"3"
@@ -56,11 +58,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/place",
+							"raw": "https://localhost:8443/place",
+							"protocol": "https",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
+							"port": "8443",
 							"path": [
 								"place"
 							]
@@ -74,11 +77,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/place/1",
+							"raw": "https://localhost:8443/place/1",
+							"protocol": "https",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
+							"port": "8443",
 							"path": [
 								"place",
 								"1"
@@ -98,11 +102,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/room",
+							"raw": "https://localhost:8443/room",
+							"protocol": "https",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
+							"port": "8443",
 							"path": [
 								"room"
 							]
@@ -116,11 +121,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/room/1",
+							"raw": "https://localhost:8443/room/1",
+							"protocol": "https",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
+							"port": "8443",
 							"path": [
 								"room",
 								"1"
@@ -137,11 +143,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/ping",
+					"raw": "https://localhost:8443/ping",
+					"protocol": "https",
 					"host": [
 						"localhost"
 					],
-					"port": "8080",
+					"port": "8443",
 					"path": [
 						"ping"
 					]

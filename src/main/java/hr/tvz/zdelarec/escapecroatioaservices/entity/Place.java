@@ -1,6 +1,12 @@
 package hr.tvz.zdelarec.escapecroatioaservices.entity;
 
-import javax.persistence.*;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * Place entity class.
@@ -45,27 +51,27 @@ public class Place {
         return cityId;
     }
 
-    public void setId(Integer id) {
+    public void setId(final Integer id) {
         this.id = id;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
-    public void setWeb(String web) {
+    public void setWeb(final String web) {
         this.web = web;
     }
 
-    public void setMail(String mail) {
+    public void setMail(final String mail) {
         this.mail = mail;
     }
 
-    public void setPhone(String phone) {
+    public void setPhone(final String phone) {
         this.phone = phone;
     }
 
-    public void setCityId(Integer cityId) {
+    public void setCityId(final Integer cityId) {
         this.cityId = cityId;
     }
 

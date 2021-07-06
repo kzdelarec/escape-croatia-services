@@ -1,27 +1,26 @@
 package hr.tvz.zdelarec.escapecroatioaservices.service.place;
 
-import hr.tvz.zdelarec.escapecroatioaservices.entity.Place;
+import hr.tvz.zdelarec.escapecroatioaservices.dto.PlaceDto;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
- * Place service
+ * Place service.
  *
  * @author kristijan.zdelarec
  */
 public interface PlaceService {
 
     /**
-     * Method for fetching {@link List} of {@link Place} objects.
-     * @return {@link List} of {@link Place} objects
+     * Method for fetching {@link List} of {@link PlaceDto} objects.
+     * @return {@link List} of {@link PlaceDto} objects
      */
-    List<Place> getAllPlaces();
+    List<PlaceDto> getAllPlaces();
 
     /**
-     * Method for fetching one {@link Place} by id.
-     * @param id {@link Place} id
-     * @return {@link Place} object
+     * Method for fetching one {@link PlaceDto} by id.
+     * @param id {@link PlaceDto} id
+     * @return {@link PlaceDto} object
      */
-    Optional<Place> getPlaceById(Integer id);
+    PlaceDto getPlaceById(Integer id);
 }
