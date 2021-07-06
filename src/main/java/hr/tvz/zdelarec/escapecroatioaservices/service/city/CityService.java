@@ -5,7 +5,7 @@ import hr.tvz.zdelarec.escapecroatioaservices.dto.CityDto;
 import java.util.List;
 
 /**
- * City service
+ * City service.
  *
  * @author kristijan.zdelarec
  */

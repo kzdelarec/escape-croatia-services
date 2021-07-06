@@ -5,13 +5,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
+/**
+ * Application test ping controller.
+ *
+ * @author kristijan.zdelarec
+ */
 @RestController
-@RequestMapping(path="/ping", produces="application/json")
+@RequestMapping(path = "/ping", produces = "application/json")
 @CrossOrigin
-public class Ping {
+public class PingController {
+
+    /**
+     * Ping test method that returns status of the service.
+     *
+     * @return status of service
+     */
     @GetMapping
-    public String returnPing(){
+    public String returnPing() {
         return "Service is alive";
     }
 }

@@ -32,7 +32,7 @@ public class CityDto {
         return progress;
     }
 
-    public void setProgress(Integer progress) {
+    public void setProgress(final Integer progress) {
         this.progress = progress;
     }
 
@@ -40,15 +40,15 @@ public class CityDto {
         return numberOfRooms;
     }
 
-    public void setNumberOfRooms(Integer numberOfRooms) {
+    public void setNumberOfRooms(final Integer numberOfRooms) {
         this.numberOfRooms = numberOfRooms;
     }
 
-    public void setId(Integer id) {
+    public void setId(final Integer id) {
         this.id = id;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
