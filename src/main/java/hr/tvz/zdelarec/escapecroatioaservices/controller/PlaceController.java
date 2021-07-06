@@ -51,4 +51,15 @@ public class PlaceController {
     public PlaceDto getById(@PathVariable("id") final Integer id) {
         return placeService.getPlaceById(id);
     }
+
+    /**
+     * Endpoint for fetching all {@link PlaceDto} objects by City identifier.
+     *
+     * @param id City identifier
+     * @return {@link PlaceDto} object
+     */
+    @GetMapping(path = "/city/{id}", produces = PlaceDto.CONTENT_TYPE)
+    public List<PlaceDto> getByCityId(@PathVariable("id") final Integer id) {
+        return placeService.getAllPlacesByCityId(id);
+    }
 }

@@ -23,4 +23,11 @@ public interface PlaceService {
      * @return {@link PlaceDto} object
      */
     PlaceDto getPlaceById(Integer id);
+
+    /**
+     * Method for fetching {@link List} of {@link PlaceDto} objects by city identifier.
+     * @param id City identifier
+     * @return {@link List} of {@link PlaceDto} objects
+     */
+    List<PlaceDto> getAllPlacesByCityId(Integer id);
 }

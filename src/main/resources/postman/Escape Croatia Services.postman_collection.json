@@ -90,6 +90,27 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Get By City Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/place/city/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"place",
+								"city",
+								"1"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},

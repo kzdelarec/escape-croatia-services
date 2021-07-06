@@ -47,4 +47,11 @@ public class PlaceServiceImpl implements PlaceService {
         final Place place = placeRepository.findById(id).orElseThrow();
         return placeMapper.mapToDto(place);
     }
+
+    @Override
+    public List<PlaceDto> getAllPlacesByCityId(final Integer id) {
+        placeMapper = new PlaceMapper(modelMapper);
+        final List<Place> placeList = placeRepository.findAllByCityId(id);
+        return placeList.stream().map(place -> placeMapper.mapToDto(place)).collect(Collectors.toList());
+    }
 }
