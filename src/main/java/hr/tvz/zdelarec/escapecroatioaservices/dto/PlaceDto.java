@@ -20,6 +20,7 @@ public class PlaceDto {
     private String web;
     private String mail;
     private String phone;
+    private Boolean favorite;
     private Integer cityId;
 
     public Integer getId() {
@@ -44,6 +45,14 @@ public class PlaceDto {
 
     public Integer getCityId() {
         return cityId;
+    }
+
+    public Boolean getFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(Boolean favorite) {
+        this.favorite = favorite;
     }
 
     public void setId(final Integer id) {
@@ -78,6 +87,7 @@ public class PlaceDto {
                 ", web='" + web + '\'' +
                 ", mail='" + mail + '\'' +
                 ", phone='" + phone + '\'' +
+                ", favourite='" + favorite + '\'' +
                 ", cityId=" + cityId +
                 '}';
     }

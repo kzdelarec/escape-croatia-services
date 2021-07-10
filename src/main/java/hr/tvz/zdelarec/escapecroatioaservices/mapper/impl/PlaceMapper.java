@@ -27,7 +27,9 @@ public class PlaceMapper implements BasicMapper<PlaceDto, Place> {
 
     @Override
     public PlaceDto mapToDto(final Place place) {
-        return modelMapper.map(place, PlaceDto.class);
+        final PlaceDto placeDto =  modelMapper.map(place, PlaceDto.class);
+        placeDto.setFavorite(false);
+        return placeDto;
     }
 
     @Override
