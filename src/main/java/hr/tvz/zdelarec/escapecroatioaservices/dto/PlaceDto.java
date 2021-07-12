@@ -51,7 +51,7 @@ public class PlaceDto {
         return favorite;
     }
 
-    public void setFavorite(Boolean favorite) {
+    public void setFavorite(final Boolean favorite) {
         this.favorite = favorite;
     }
 

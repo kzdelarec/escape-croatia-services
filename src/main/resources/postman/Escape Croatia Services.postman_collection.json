@@ -155,6 +155,26 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Get By Place Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/room/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"room",
+								"1"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},

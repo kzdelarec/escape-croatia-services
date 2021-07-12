@@ -1,6 +1,12 @@
 package hr.tvz.zdelarec.escapecroatioaservices.entity;
 
-import javax.persistence.*;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * Room entity class.
@@ -20,13 +26,16 @@ public class Room {
     private Integer time;
     private String reservationUrl;
     private Boolean isActive;
+    @Column(name = "place_id")
     private Integer placeId;
+    @Column(name = "city_id")
+    private Integer cityId;
 
     public Integer getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(final Integer id) {
         this.id = id;
     }
 
@@ -34,7 +43,7 @@ public class Room {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
@@ -42,7 +51,15 @@ public class Room {
         return address;
     }
 
-    public void setAddress(String address) {
+    public Integer getCityId() {
+        return cityId;
+    }
+
+    public void setCityId(final Integer cityId) {
+        this.cityId = cityId;
+    }
+
+    public void setAddress(final String address) {
         this.address = address;
     }
 
@@ -50,7 +67,7 @@ public class Room {
         return players;
     }
 
-    public void setPlayers(String players) {
+    public void setPlayers(final String players) {
         this.players = players;
     }
 
@@ -58,7 +75,7 @@ public class Room {
         return time;
     }
 
-    public void setTime(Integer time) {
+    public void setTime(final Integer time) {
         this.time = time;
     }
 
@@ -66,7 +83,7 @@ public class Room {
         return reservationUrl;
     }
 
-    public void setReservationUrl(String reservationUrl) {
+    public void setReservationUrl(final String reservationUrl) {
         this.reservationUrl = reservationUrl;
     }
 
@@ -74,7 +91,7 @@ public class Room {
         return isActive;
     }
 
-    public void setActive(Boolean active) {
+    public void setActive(final Boolean active) {
         isActive = active;
     }
 
@@ -82,7 +99,7 @@ public class Room {
         return placeId;
     }
 
-    public void setPlaceId(Integer placeId) {
+    public void setPlaceId(final Integer placeId) {
         this.placeId = placeId;
     }
 
@@ -97,6 +114,7 @@ public class Room {
                 ", reservationUrl='" + reservationUrl + '\'' +
                 ", isActive=" + isActive +
                 ", placeId=" + placeId +
+                ", cityId=" + cityId +
                 '}';
     }
 }
