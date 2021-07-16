@@ -34,6 +34,8 @@
     <!--======[ TREEWALKER ]================================================== -->
     <module name="TreeWalker">
 
+        <module name="UnusedImports"/>
+
         <!-- Support for SuppressWarnings annotation -->
         <module name="SuppressWarningsHolder" />
 
@@ -138,12 +140,6 @@
           allowed to document a undeclared RunTimeException. -->
         <module name="JavadocMethod">
         </module>
-
-        <!-- Find TODO and FIXME comments -->
-        <!--    <module name="TodoComment">-->
-        <!--      <property name="format" value="(TODO)|(FIXME)" />-->
-        <!--    </module>-->
-
 
         <!--======[ NAMING ]==================================================== -->
         <!-- Constants Uppercase and underscore -->

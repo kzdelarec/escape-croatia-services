@@ -142,7 +142,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8443/room/1",
+							"raw": "https://localhost:8443/room/2",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -150,7 +150,7 @@
 							"port": "8443",
 							"path": [
 								"room",
-								"1"
+								"2"
 							]
 						}
 					},
@@ -162,7 +162,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8443/room/1",
+							"raw": "https://localhost:8443/room/place/1",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -170,6 +170,7 @@
 							"port": "8443",
 							"path": [
 								"room",
+								"place",
 								"1"
 							]
 						}
@@ -180,22 +181,51 @@
 		},
 		{
 			"name": "Ping",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://localhost:8443/ping",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "8443",
-					"path": [
-						"ping"
-					]
+			"item": [
+				{
+					"name": "Ping",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/ping",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"ping"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Get User Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/user",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
