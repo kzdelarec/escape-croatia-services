@@ -13,21 +13,24 @@ public interface PlaceService {
 
     /**
      * Method for fetching {@link List} of {@link PlaceDto} objects.
+     * @param userId user identifier
      * @return {@link List} of {@link PlaceDto} objects
      */
-    List<PlaceDto> getAllPlaces();
+    List<PlaceDto> getAllPlaces(String userId);
 
     /**
      * Method for fetching one {@link PlaceDto} by id.
      * @param id {@link PlaceDto} id
+     * @param userId user identifier
      * @return {@link PlaceDto} object
      */
-    PlaceDto getPlaceById(Integer id);
+    PlaceDto getPlaceById(Integer id, String userId);
 
     /**
-     * Method for fetching {@link List} of {@link PlaceDto} objects by city identifier.
+     * Method for fetching {@link List} of {@link PlaceDto} objects by city and user identifier.
      * @param id City identifier
+     * @param userId user identifier
      * @return {@link List} of {@link PlaceDto} objects
      */
-    List<PlaceDto> getAllPlacesByCityId(Integer id);
+    List<PlaceDto> getAllPlacesByCityId(Integer id, String userId);
 }
