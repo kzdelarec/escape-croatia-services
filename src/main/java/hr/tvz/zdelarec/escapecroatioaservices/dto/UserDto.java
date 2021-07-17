@@ -1,17 +1,12 @@
 package hr.tvz.zdelarec.escapecroatioaservices.dto;
 
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 /**
  * User DTO class.
  *
  * @author kristijan.zdelarec
  */
-@Entity
-@Table(name = "ec_user")
 public class UserDto {
 
     /**
@@ -19,7 +14,7 @@ public class UserDto {
      */
     public static final String CONTENT_TYPE = "application/user.v1+json";
 
-    @Id
+    @NotNull
     private String userId;
 
     public String getUserId() {
