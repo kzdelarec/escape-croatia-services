@@ -18,7 +18,8 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'mysql:mysql-connector-java:8.0.15'
+    implementation 'org.postgresql:postgresql'
+    implementation 'postgresql:postgresql:9.1-901.jdbc4'
     implementation 'org.modelmapper:modelmapper:2.3.7'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testCompile group: 'junit', name: 'junit', version: '4.12'
