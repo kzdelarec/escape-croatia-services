@@ -66,4 +66,15 @@ public class PlaceController {
     public List<PlaceDto> getByCityId(@PathVariable("id") final Integer id, @RequestParam(name = "userId") final String userId) {
         return placeService.getAllPlacesByCityId(id, userId);
     }
+
+    /**
+     * Endpoint for fetching all user's favourite {@link PlaceDto} objects.
+     *
+     * @param userId user identifier
+     * @return {@link PlaceDto} object
+     */
+    @GetMapping(path = "/favorites", produces = PlaceDto.CONTENT_TYPE)
+    public List<PlaceDto> getFavourites(@RequestParam(name = "userId") final String userId) {
+        return placeService.getAllByIdIn(userId);
+    }
 }

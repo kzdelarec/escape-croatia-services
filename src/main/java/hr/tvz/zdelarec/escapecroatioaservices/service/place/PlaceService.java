@@ -1,6 +1,7 @@
 package hr.tvz.zdelarec.escapecroatioaservices.service.place;
 
 import hr.tvz.zdelarec.escapecroatioaservices.dto.PlaceDto;
+import hr.tvz.zdelarec.escapecroatioaservices.entity.Place;
 
 import java.util.List;
 
@@ -33,4 +34,11 @@ public interface PlaceService {
      * @return {@link List} of {@link PlaceDto} objects
      */
     List<PlaceDto> getAllPlacesByCityId(Integer id, String userId);
+
+    /**
+     * Find all user's favourite places.
+     * @param userId user identifier
+     * @return {@link List} of {@link Place} objects
+     */
+    List<PlaceDto> getAllByIdIn(String userId);
 }

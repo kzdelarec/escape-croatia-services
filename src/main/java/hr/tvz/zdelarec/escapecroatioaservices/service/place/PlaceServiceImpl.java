@@ -65,4 +65,12 @@ public class PlaceServiceImpl implements PlaceService {
         final List<Place> placeList = placeRepository.findAllByCityId(id);
         return placeList.stream().map(place -> placeMapper.mapToDto(place)).collect(Collectors.toList());
     }
+
+    @Override
+    public List<PlaceDto> getAllByIdIn(final String userId) {
+        final List<FavoriteDto> favoriteDtoList = favoriteService.getAllFavorites(userId);
+        placeMapper = new PlaceMapper(modelMapper, favoriteDtoList);
+        final List<Place> placeList = placeRepository.findAllByIdIn(favoriteDtoList.stream().map(FavoriteDto::getPlaceId).collect(Collectors.toList()));
+        return placeList.stream().map(place -> placeMapper.mapToDto(place)).collect(Collectors.toList());
+    }
 }

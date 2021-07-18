@@ -18,4 +18,11 @@ public interface PlaceRepository extends CrudRepository<Place, Integer> {
      * @return {@link List} of {@link Place} objects
      */
     List<Place> findAllByCityId(Integer id);
+
+    /**
+     * Find all places by list of identifiers.
+     * @param ids place ids
+     * @return {@link List} of {@link Place} objects
+     */
+    List<Place> findAllByIdIn(List<Integer> ids);
 }
