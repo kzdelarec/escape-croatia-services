@@ -14,12 +14,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8443/city",
-							"protocol": "https",
+							"raw": "http://localhost:8080/city",
+							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8443",
+							"port": "8080",
 							"path": [
 								"city"
 							]
@@ -33,12 +33,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8443/city/3",
-							"protocol": "https",
+							"raw": "http://localhost:8080/city/3",
+							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8443",
+							"port": "8080",
 							"path": [
 								"city",
 								"3"
@@ -58,14 +58,20 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8443/place",
-							"protocol": "https",
+							"raw": "http://localhost:8080/place?userId=c48865bd-a180-4b7d-b9a5-6c83a168ad21",
+							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8443",
+							"port": "8080",
 							"path": [
 								"place"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "c48865bd-a180-4b7d-b9a5-6c83a168ad21"
+								}
 							]
 						}
 					},
@@ -77,15 +83,21 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8443/place/1",
-							"protocol": "https",
+							"raw": "http://localhost:8080/place/1?userId=c48865bd-a180-4b7d-b9a5-6c83a168ad21",
+							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8443",
+							"port": "8080",
 							"path": [
 								"place",
 								"1"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "c48865bd-a180-4b7d-b9a5-6c83a168ad21"
+								}
 							]
 						}
 					},
@@ -97,16 +109,48 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8443/place/city/1",
-							"protocol": "https",
+							"raw": "http://localhost:8080/place/city/1?userId=c48865bd-a180-4b7d-b9a5-6c83a168ad21",
+							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8443",
+							"port": "8080",
 							"path": [
 								"place",
 								"city",
 								"1"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "c48865bd-a180-4b7d-b9a5-6c83a168ad21"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Favourites",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/place/favorites?userId=c48865bd-a180-4b7d-b9a5-6c83a168ad21",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"place",
+								"favorites"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "c48865bd-a180-4b7d-b9a5-6c83a168ad21"
+								}
 							]
 						}
 					},
@@ -123,12 +167,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8443/room",
-							"protocol": "https",
+							"raw": "http://localhost:8080/room",
+							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8443",
+							"port": "8080",
 							"path": [
 								"room"
 							]
@@ -142,12 +186,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8443/room/2",
-							"protocol": "https",
+							"raw": "http://localhost:8080/room/2",
+							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8443",
+							"port": "8080",
 							"path": [
 								"room",
 								"2"
@@ -162,12 +206,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8443/room/place/1",
-							"protocol": "https",
+							"raw": "http://localhost:8080/room/place/1",
+							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8443",
+							"port": "8080",
 							"path": [
 								"room",
 								"place",
@@ -188,12 +232,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8443/ping",
-							"protocol": "https",
+							"raw": "http://localhost:8080/ping",
+							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8443",
+							"port": "8080",
 							"path": [
 								"ping"
 							]
@@ -212,14 +256,87 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8443/user",
-							"protocol": "https",
+							"raw": "http://localhost:8080/user",
+							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8443",
+							"port": "8080",
 							"path": [
 								"user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Favorite",
+			"item": [
+				{
+					"name": "Add Favourite",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/favorites.v1+json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": \"c48865bd-a180-4b7d-b9a5-6c83a168ad21\",\r\n    \"placeId\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/favorite",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"favorite"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Favourite",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/favorites.v1+json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": \"c48865bd-a180-4b7d-b9a5-6c83a168ad21\",\r\n    \"placeId\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/favorite",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"favorite"
 							]
 						}
 					},

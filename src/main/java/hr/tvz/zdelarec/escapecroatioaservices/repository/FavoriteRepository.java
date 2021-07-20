@@ -27,4 +27,12 @@ public interface FavoriteRepository extends CrudRepository<Favorite, Integer> {
      */
     Favorite findOneByUserIdAndPlaceId(String userId, Integer placeId);
 
+    /**
+     * Check if {@link Favorite} exists.
+     * @param userId user identifier
+     * @param placeId place identifier
+     * @return {@link Boolean}
+     */
+    Boolean existsByUserIdAndPlaceId(String userId, Integer placeId);
+
 }

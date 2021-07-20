@@ -38,4 +38,11 @@ public interface FavoriteService {
      * @param favoriteDto {@link FavoriteDto} object
      */
     void deleteFavorite(FavoriteDto favoriteDto);
+
+    /**
+     * Check if {@link Favorite} exists.
+     * @param favoriteDto {@link FavoriteDto} object
+     * @return {@link Boolean}
+     */
+    Boolean existsByUserIdAndPlaceId(FavoriteDto favoriteDto);
 }

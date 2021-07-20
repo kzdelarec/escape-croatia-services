@@ -47,15 +47,26 @@ public class FavoriteServiceImpl implements FavoriteService {
 
     @Override
     public FavoriteDto createFavorite(final FavoriteDto favoriteDto) {
-        final Favorite favorite = favoriteRepository.save(modelMapper.map(favoriteDto, Favorite.class));
-        return modelMapper.map(favorite, FavoriteDto.class);
+        if (existsByUserIdAndPlaceId(favoriteDto)) {
+            return favoriteDto;
+        } else {
+            final Favorite favorite = favoriteRepository.save(modelMapper.map(favoriteDto, Favorite.class));
+            return modelMapper.map(favorite, FavoriteDto.class);
+        }
     }
 
     @Override
     public void deleteFavorite(final FavoriteDto favoriteDto) {
-        final Favorite favorite = favoriteRepository.findOneByUserIdAndPlaceId(favoriteDto.getUserId(), favoriteDto.getPlaceId());
-        if (favorite != null) {
-            favoriteRepository.delete(favorite);
+        if (existsByUserIdAndPlaceId(favoriteDto)) {
+            final Favorite favorite = favoriteRepository.findOneByUserIdAndPlaceId(favoriteDto.getUserId(), favoriteDto.getPlaceId());
+            if (favorite != null) {
+                favoriteRepository.delete(favorite);
+            }
         }
+    }
+
+    @Override
+    public Boolean existsByUserIdAndPlaceId(final FavoriteDto favoriteDto) {
+        return favoriteRepository.existsByUserIdAndPlaceId(favoriteDto.getUserId(), favoriteDto.getPlaceId());
     }
 }
