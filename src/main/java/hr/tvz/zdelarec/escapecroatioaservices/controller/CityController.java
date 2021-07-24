@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-
 /**
  * Controller for City CRUD operations.
  *
@@ -47,7 +46,7 @@ public class CityController {
      */
     @GetMapping(produces = CityDto.CONTENT_TYPE)
     public List<CityDto> getAll() {
-        LOGGER.info("Dohvat");
+        LOGGER.info("Fetching all cities...");
         return cityService.getAllCities();
     }
 
@@ -59,6 +58,7 @@ public class CityController {
      */
     @GetMapping(path = "/{id}", produces = CityDto.CONTENT_TYPE)
     public CityDto getById(@PathVariable("id") final Integer id) {
+        LOGGER.info("Fetching city with ID: {}", id);
         return cityService.getCityById(id);
     }
 }

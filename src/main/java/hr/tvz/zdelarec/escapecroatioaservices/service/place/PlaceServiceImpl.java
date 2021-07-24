@@ -7,6 +7,8 @@ import hr.tvz.zdelarec.escapecroatioaservices.mapper.impl.PlaceMapper;
 import hr.tvz.zdelarec.escapecroatioaservices.repository.PlaceRepository;
 import hr.tvz.zdelarec.escapecroatioaservices.service.favorite.FavoriteService;
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,11 @@ import java.util.stream.Collectors;
  */
 @Service
 public class PlaceServiceImpl implements PlaceService {
+
+    /**
+     * Logger.
+     */
+    private static final Logger LOGGER = LoggerFactory.getLogger(PlaceService.class);
 
     /**
      * Autowired {@link PlaceRepository}.
@@ -47,6 +54,7 @@ public class PlaceServiceImpl implements PlaceService {
         final List<FavoriteDto> favoriteDtoList = favoriteService.getAllFavorites(userId);
         placeMapper = new PlaceMapper(modelMapper, favoriteDtoList);
         final List<Place> placeList = (List<Place>) placeRepository.findAll();
+        LOGGER.info("Found {} results for user {}", placeList.size(), userId);
         return placeList.stream().map(place -> placeMapper.mapToDto(place)).collect(Collectors.toList());
     }
 
@@ -55,6 +63,7 @@ public class PlaceServiceImpl implements PlaceService {
         final List<FavoriteDto> favoriteDtoList = favoriteService.getAllFavorites(userId);
         placeMapper = new PlaceMapper(modelMapper, favoriteDtoList);
         final Place place = placeRepository.findById(id).orElseThrow();
+        LOGGER.info("Found {} user {}", place, userId);
         return placeMapper.mapToDto(place);
     }
 
@@ -63,6 +72,7 @@ public class PlaceServiceImpl implements PlaceService {
         final List<FavoriteDto> favoriteDtoList = favoriteService.getAllFavorites(userId);
         placeMapper = new PlaceMapper(modelMapper, favoriteDtoList);
         final List<Place> placeList = placeRepository.findAllByCityId(id);
+        LOGGER.info("Found {} results with place ID {} for user {}", placeList.size(), id, userId);
         return placeList.stream().map(place -> placeMapper.mapToDto(place)).collect(Collectors.toList());
     }
 
@@ -71,6 +81,7 @@ public class PlaceServiceImpl implements PlaceService {
         final List<FavoriteDto> favoriteDtoList = favoriteService.getAllFavorites(userId);
         placeMapper = new PlaceMapper(modelMapper, favoriteDtoList);
         final List<Place> placeList = placeRepository.findAllByIdIn(favoriteDtoList.stream().map(FavoriteDto::getPlaceId).collect(Collectors.toList()));
+        LOGGER.info("Found {} results for user {}", placeList.size(), userId);
         return placeList.stream().map(place -> placeMapper.mapToDto(place)).collect(Collectors.toList());
     }
 }

@@ -2,6 +2,8 @@ package hr.tvz.zdelarec.escapecroatioaservices.controller;
 
 import hr.tvz.zdelarec.escapecroatioaservices.dto.RoomDto;
 import hr.tvz.zdelarec.escapecroatioaservices.service.room.RoomService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,6 +29,11 @@ public class RoomController {
     public static final String BASE_URL = "/room";
 
     /**
+     * Logger.
+     */
+    private static final Logger LOGGER = LoggerFactory.getLogger(RoomController.class);
+
+    /**
      * Autowired {@link RoomService}.
      */
     @Autowired
@@ -39,6 +46,7 @@ public class RoomController {
      */
     @GetMapping(produces = RoomDto.CONTENT_TYPE)
     public List<RoomDto> getAll() {
+        LOGGER.info("Fetching all rooms...");
         return roomService.getAllRooms();
     }
 
@@ -50,6 +58,7 @@ public class RoomController {
      */
     @GetMapping(path = "/{id}", produces = RoomDto.CONTENT_TYPE)
     public RoomDto getById(@PathVariable("id") final Integer id) {
+        LOGGER.info("Fetching one room with ID: {}", id);
         return roomService.getRoomById(id);
     }
 
@@ -61,6 +70,7 @@ public class RoomController {
      */
     @GetMapping(path = "/place/{id}", produces = RoomDto.CONTENT_TYPE)
     public List<RoomDto> getByPlaceId(@PathVariable("id") final Integer id) {
+        LOGGER.info("Fetching all rooms by place ID: {}", id);
         return roomService.getAllRoomsByPlaceId(id);
     }
 }

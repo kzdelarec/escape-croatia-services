@@ -5,6 +5,8 @@ import hr.tvz.zdelarec.escapecroatioaservices.entity.Room;
 import hr.tvz.zdelarec.escapecroatioaservices.mapper.impl.RoomMapper;
 import hr.tvz.zdelarec.escapecroatioaservices.repository.RoomRepository;
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,11 @@ import java.util.stream.Collectors;
  */
 @Service
 public class RoomServiceImpl implements RoomService {
+
+    /**
+     * Logger.
+     */
+    private static final Logger LOGGER = LoggerFactory.getLogger(RoomService.class);
 
     /**
      * Autowired {@link RoomRepository}.
@@ -37,6 +44,7 @@ public class RoomServiceImpl implements RoomService {
     public List<RoomDto> getAllRooms() {
         roomMapper = new RoomMapper(modelMapper);
         final List<Room> roomList = (List<Room>) roomRepository.findAll();
+        LOGGER.info("Found {} results", roomList.size());
         return roomList.stream().map(room -> roomMapper.mapToDto(room)).collect(Collectors.toList());
     }
 
@@ -44,6 +52,7 @@ public class RoomServiceImpl implements RoomService {
     public RoomDto getRoomById(final Integer id) {
         roomMapper = new RoomMapper(modelMapper);
         final Room room = roomRepository.findById(id).orElseThrow();
+        LOGGER.info("Found {} by room ID {}", room, room.getId());
         return roomMapper.mapToDto(room);
     }
 
@@ -51,6 +60,7 @@ public class RoomServiceImpl implements RoomService {
     public List<RoomDto> getAllRoomsByPlaceId(final Integer id) {
         roomMapper = new RoomMapper(modelMapper);
         final List<Room> roomList = roomRepository.findAllByPlaceId(id);
+        LOGGER.info("Found {} results with place ID {}", roomList.size(), id);
         return roomList.stream().map(room -> roomMapper.mapToDto(room)).collect(Collectors.toList());
     }
 }

@@ -6,6 +6,8 @@ import hr.tvz.zdelarec.escapecroatioaservices.repository.RoomRepository;
 import hr.tvz.zdelarec.escapecroatioaservices.repository.UserRepository;
 import hr.tvz.zdelarec.escapecroatioaservices.service.room.RoomService;
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,11 +22,19 @@ import java.util.UUID;
 public class UserServiceImpl implements UserService {
 
     /**
+     * Logger.
+     */
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserService.class);
+
+    /**
      * Autowired {@link RoomRepository}.
      */
     @Autowired
     private UserRepository userRepository;
 
+    /**
+     * Autowired {@link ModelMapper}.
+     */
     @Autowired
     private ModelMapper modelMapper;
 
@@ -41,11 +51,13 @@ public class UserServiceImpl implements UserService {
     public UserDto getNewUserId() {
         final String userId = UUID.randomUUID().toString();
         if (existsByUserId(userId)) {
+            LOGGER.info("User ID {} already exists. Fetching new one.", userId);
             return getNewUserId();
         } else {
             final User user = new User();
             user.setUserId(userId);
             userRepository.save(user);
+            LOGGER.info("Created new user with ID {}", userId);
             return modelMapper.map(user, UserDto.class);
         }
     }
