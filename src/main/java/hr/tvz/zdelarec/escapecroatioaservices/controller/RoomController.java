@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -41,36 +42,38 @@ public class RoomController {
 
     /**
      * Endpoint for fetching all {@link RoomDto} objects.
-     *
+     * @param userId user identifier
      * @return fetched {@link List} of {@link RoomDto} objects
      */
     @GetMapping(produces = RoomDto.CONTENT_TYPE)
-    public List<RoomDto> getAll() {
+    public List<RoomDto> getAll(@RequestParam(name = "userId") final String userId) {
         LOGGER.info("Fetching all rooms...");
-        return roomService.getAllRooms();
+        return roomService.getAllRooms(userId);
     }
 
     /**
      * Endpoint for fetching {@link RoomDto} object.
      *
      * @param id object identifier
+     * @param userId user identifier
      * @return {@link RoomDto} object
      */
     @GetMapping(path = "/{id}", produces = RoomDto.CONTENT_TYPE)
-    public RoomDto getById(@PathVariable("id") final Integer id) {
+    public RoomDto getById(@PathVariable("id") final Integer id, @RequestParam(name = "userId") final String userId) {
         LOGGER.info("Fetching one room with ID: {}", id);
-        return roomService.getRoomById(id);
+        return roomService.getRoomById(id, userId);
     }
 
     /**
      * Endpoint for fetching all {@link RoomDto} objects by Place identifier.
      *
      * @param id Place identifier
+     * @param userId user identifier
      * @return {@link RoomDto} object
      */
     @GetMapping(path = "/place/{id}", produces = RoomDto.CONTENT_TYPE)
-    public List<RoomDto> getByPlaceId(@PathVariable("id") final Integer id) {
+    public List<RoomDto> getByPlaceId(@PathVariable("id") final Integer id, @RequestParam(name = "userId") final String userId) {
         LOGGER.info("Fetching all rooms by place ID: {}", id);
-        return roomService.getAllRoomsByPlaceId(id);
+        return roomService.getAllRoomsByPlaceId(id, userId);
     }
 }

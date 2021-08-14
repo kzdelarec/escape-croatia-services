@@ -1,9 +1,11 @@
 package hr.tvz.zdelarec.escapecroatioaservices.service.room;
 
+import hr.tvz.zdelarec.escapecroatioaservices.dto.FinishedRoomDto;
 import hr.tvz.zdelarec.escapecroatioaservices.dto.RoomDto;
 import hr.tvz.zdelarec.escapecroatioaservices.entity.Room;
 import hr.tvz.zdelarec.escapecroatioaservices.mapper.impl.RoomMapper;
 import hr.tvz.zdelarec.escapecroatioaservices.repository.RoomRepository;
+import hr.tvz.zdelarec.escapecroatioaservices.service.finishedRoom.FinishedRoomService;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,27 +40,37 @@ public class RoomServiceImpl implements RoomService {
     @Autowired
     private ModelMapper modelMapper;
 
+    /**
+     * Autowired {@link FinishedRoomService}.
+     */
+    @Autowired
+    private FinishedRoomService finishedRoomService;
+
     private RoomMapper roomMapper;
 
+
     @Override
-    public List<RoomDto> getAllRooms() {
-        roomMapper = new RoomMapper(modelMapper);
+    public List<RoomDto> getAllRooms(final String userId) {
+        final List<FinishedRoomDto> finishedRoomDtoList = finishedRoomService.getAllFinishedRooms(userId);
+        roomMapper = new RoomMapper(modelMapper, finishedRoomDtoList);
         final List<Room> roomList = (List<Room>) roomRepository.findAll();
         LOGGER.info("Found {} results", roomList.size());
         return roomList.stream().map(room -> roomMapper.mapToDto(room)).collect(Collectors.toList());
     }
 
     @Override
-    public RoomDto getRoomById(final Integer id) {
-        roomMapper = new RoomMapper(modelMapper);
+    public RoomDto getRoomById(final Integer id, final String userId) {
+        final List<FinishedRoomDto> finishedRoomDtoList = finishedRoomService.getAllFinishedRooms(userId);
+        roomMapper = new RoomMapper(modelMapper, finishedRoomDtoList);
         final Room room = roomRepository.findById(id).orElseThrow();
         LOGGER.info("Found {} by room ID {}", room, room.getId());
         return roomMapper.mapToDto(room);
     }
 
     @Override
-    public List<RoomDto> getAllRoomsByPlaceId(final Integer id) {
-        roomMapper = new RoomMapper(modelMapper);
+    public List<RoomDto> getAllRoomsByPlaceId(final Integer id, final String userId) {
+        final List<FinishedRoomDto> finishedRoomDtoList = finishedRoomService.getAllFinishedRooms(userId);
+        roomMapper = new RoomMapper(modelMapper, finishedRoomDtoList);
         final List<Room> roomList = roomRepository.findAllByPlaceId(id);
         LOGGER.info("Found {} results with place ID {}", roomList.size(), id);
         return roomList.stream().map(room -> roomMapper.mapToDto(room)).collect(Collectors.toList());
