@@ -54,7 +54,7 @@ public class FinishedRoomServiceImpl implements FinishedRoomService {
 
     @Override
     public FinishedRoomDto createFinishedRoom(final FinishedRoomDto finishedRoomDto) {
-        if (existsByUserIdAndPlaceId(finishedRoomDto)) {
+        if (existsByUserIdAndRoomId(finishedRoomDto)) {
             LOGGER.info("Favourite with place ID {}  for user {} already exists.", finishedRoomDto.getPlaceId(), finishedRoomDto.getUserId());
             return finishedRoomDto;
         } else {
@@ -66,7 +66,7 @@ public class FinishedRoomServiceImpl implements FinishedRoomService {
 
     @Override
     public void deleteFinishedRoom(final FinishedRoomDto finishedRoomDto) {
-        if (existsByUserIdAndPlaceId(finishedRoomDto)) {
+        if (existsByUserIdAndRoomId(finishedRoomDto)) {
             final FinishedRoom finishedRoom = finishedRoomsRepository.findOneByUserIdAndPlaceId(finishedRoomDto.getUserId(), finishedRoomDto.getPlaceId());
             if (finishedRoom != null) {
                 finishedRoomsRepository.delete(finishedRoom);
@@ -78,7 +78,7 @@ public class FinishedRoomServiceImpl implements FinishedRoomService {
     }
 
     @Override
-    public Boolean existsByUserIdAndPlaceId(final FinishedRoomDto finishedRoomDto) {
-        return finishedRoomsRepository.existsByUserIdAndPlaceId(finishedRoomDto.getUserId(), finishedRoomDto.getPlaceId());
+    public Boolean existsByUserIdAndRoomId(final FinishedRoomDto finishedRoomDto) {
+        return finishedRoomsRepository.existsByUserIdAndRoomId(finishedRoomDto.getUserId(), finishedRoomDto.getRoomId());
     }
 }

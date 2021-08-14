@@ -43,5 +43,5 @@ public interface FinishedRoomService {
      * @param finishedRoomDto {@link FinishedRoomDto} object
      * @return {@link Boolean}
      */
-    Boolean existsByUserIdAndPlaceId(FinishedRoomDto finishedRoomDto);
+    Boolean existsByUserIdAndRoomId(FinishedRoomDto finishedRoomDto);
 }

@@ -30,9 +30,9 @@ public interface FinishedRoomsRepository extends CrudRepository<FinishedRoom, In
     /**
      * Check if {@link FinishedRoom} exists.
      * @param userId user identifier
-     * @param placeId place identifier
+     * @param roomId room identifier
      * @return {@link Boolean}
      */
-    Boolean existsByUserIdAndPlaceId(String userId, Integer placeId);
+    Boolean existsByUserIdAndRoomId(String userId, Integer roomId);
 
 }
