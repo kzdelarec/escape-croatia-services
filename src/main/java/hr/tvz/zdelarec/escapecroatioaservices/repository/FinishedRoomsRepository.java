@@ -22,10 +22,10 @@ public interface FinishedRoomsRepository extends CrudRepository<FinishedRoom, In
     /**
      * Fetch one {@link FinishedRoom} object by user and place identifier.
      * @param userId user identifier
-     * @param placeId place identifier
+     * @param roomId room identifier
      * @return {@link FinishedRoom} object
      */
-    FinishedRoom findOneByUserIdAndPlaceId(String userId, Integer placeId);
+    FinishedRoom findOneByUserIdAndRoomId(String userId, Integer roomId);
 
     /**
      * Check if {@link FinishedRoom} exists.

@@ -47,7 +47,7 @@ public class FinishedRoomServiceImpl implements FinishedRoomService {
 
     @Override
     public FinishedRoomDto getOneFinishedRoom(final FinishedRoomDto finishedRoomDto) {
-        final FinishedRoom finishedRoom = finishedRoomsRepository.findOneByUserIdAndPlaceId(finishedRoomDto.getUserId(), finishedRoomDto.getPlaceId());
+        final FinishedRoom finishedRoom = finishedRoomsRepository.findOneByUserIdAndRoomId(finishedRoomDto.getUserId(), finishedRoomDto.getRoomId());
         LOGGER.info("Found {}  for user {}", finishedRoom, finishedRoomDto.getUserId());
         return modelMapper.map(finishedRoom, FinishedRoomDto.class);
     }
@@ -67,13 +67,13 @@ public class FinishedRoomServiceImpl implements FinishedRoomService {
     @Override
     public void deleteFinishedRoom(final FinishedRoomDto finishedRoomDto) {
         if (existsByUserIdAndRoomId(finishedRoomDto)) {
-            final FinishedRoom finishedRoom = finishedRoomsRepository.findOneByUserIdAndPlaceId(finishedRoomDto.getUserId(), finishedRoomDto.getPlaceId());
+            final FinishedRoom finishedRoom = finishedRoomsRepository.findOneByUserIdAndRoomId(finishedRoomDto.getUserId(), finishedRoomDto.getRoomId());
             if (finishedRoom != null) {
                 finishedRoomsRepository.delete(finishedRoom);
-                LOGGER.info("Removed favourite with place ID {}  for user {}.", finishedRoom.getPlaceId(), finishedRoom.getUserId());
+                LOGGER.info("Removed finished game with room ID {}  for user {}.", finishedRoom.getPlaceId(), finishedRoom.getUserId());
             }
         } else {
-            LOGGER.info("Favourite with place ID {}  for user {} does not exist.", finishedRoomDto.getPlaceId(), finishedRoomDto.getUserId());
+            LOGGER.info("Finished game with room ID {}  for user {} does not exist.", finishedRoomDto.getPlaceId(), finishedRoomDto.getUserId());
         }
     }
 
