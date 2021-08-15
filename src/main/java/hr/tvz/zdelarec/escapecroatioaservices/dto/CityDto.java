@@ -17,39 +17,30 @@ public class CityDto {
     @NotNull
     private Integer id;
     private String name;
-    private Integer progress;
-    private Integer numberOfRooms;
+    private ProgressDto progress;
 
     public Integer getId() {
         return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Integer getProgress() {
-        return progress;
-    }
-
-    public void setProgress(final Integer progress) {
-        this.progress = progress;
-    }
-
-    public Integer getNumberOfRooms() {
-        return numberOfRooms;
-    }
-
-    public void setNumberOfRooms(final Integer numberOfRooms) {
-        this.numberOfRooms = numberOfRooms;
     }
 
     public void setId(final Integer id) {
         this.id = id;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public void setName(final String name) {
         this.name = name;
+    }
+
+    public ProgressDto getProgress() {
+        return progress;
+    }
+
+    public void setProgress(final ProgressDto progress) {
+        this.progress = progress;
     }
 
     @Override
@@ -58,7 +49,6 @@ public class CityDto {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", progress=" + progress +
-                ", numberOfRooms=" + numberOfRooms +
                 '}';
     }
 }

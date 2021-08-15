@@ -14,7 +14,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/city",
+							"raw": "http://localhost:8080/city?userId=c48865bd-a180-4b7d-b9a5-6c83a168ad21",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -22,6 +22,12 @@
 							"port": "8080",
 							"path": [
 								"city"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "c48865bd-a180-4b7d-b9a5-6c83a168ad21"
+								}
 							]
 						}
 					},
@@ -33,7 +39,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/city/3",
+							"raw": "http://localhost:8080/city/3?userId=c48865bd-a180-4b7d-b9a5-6c83a168ad21",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -42,6 +48,12 @@
 							"path": [
 								"city",
 								"3"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "c48865bd-a180-4b7d-b9a5-6c83a168ad21"
+								}
 							]
 						}
 					},
@@ -428,6 +440,65 @@
 							"port": "8080",
 							"path": [
 								"finished"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Progress",
+			"item": [
+				{
+					"name": "Get By Place Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/progress/place/1?userId=c48865bd-a180-4b7d-b9a5-6c83a168ad21",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"progress",
+								"place",
+								"1"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "c48865bd-a180-4b7d-b9a5-6c83a168ad21"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get By City Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/progress/city/1?userId=c48865bd-a180-4b7d-b9a5-6c83a168ad21",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"progress",
+								"city",
+								"1"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "c48865bd-a180-4b7d-b9a5-6c83a168ad21"
+								}
 							]
 						}
 					},

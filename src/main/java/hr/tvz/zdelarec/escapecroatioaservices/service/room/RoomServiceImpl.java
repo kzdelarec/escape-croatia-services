@@ -75,4 +75,13 @@ public class RoomServiceImpl implements RoomService {
         LOGGER.info("Found {} results with place ID {}", roomList.size(), id);
         return roomList.stream().map(room -> roomMapper.mapToDto(room)).collect(Collectors.toList());
     }
+
+    @Override
+    public List<RoomDto> getAllRoomsByCityId(final Integer id, final String userId) {
+        final List<FinishedRoomDto> finishedRoomDtoList = finishedRoomService.getAllFinishedRooms(userId);
+        roomMapper = new RoomMapper(modelMapper, finishedRoomDtoList);
+        final List<Room> roomList = roomRepository.findAllByCityId(id);
+        LOGGER.info("Found {} results with city ID {}", roomList.size(), id);
+        return roomList.stream().map(room -> roomMapper.mapToDto(room)).collect(Collectors.toList());
+    }
 }

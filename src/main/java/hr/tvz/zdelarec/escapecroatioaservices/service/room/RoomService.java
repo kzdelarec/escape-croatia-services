@@ -33,4 +33,12 @@ public interface RoomService {
      * @return {@link List} of {@link RoomDto} objects
      */
     List<RoomDto> getAllRoomsByPlaceId(Integer id, String userId);
+
+    /**
+     * Method for fetching {@link List} of {@link RoomDto} objects by city identifier.
+     * @param userId user identifier
+     * @param id city identifier
+     * @return {@link List} of {@link RoomDto} objects
+     */
+    List<RoomDto> getAllRoomsByCityId(Integer id, String userId);
 }

@@ -4,6 +4,7 @@ import hr.tvz.zdelarec.escapecroatioaservices.dto.CityDto;
 import hr.tvz.zdelarec.escapecroatioaservices.entity.City;
 import hr.tvz.zdelarec.escapecroatioaservices.mapper.impl.CityMapper;
 import hr.tvz.zdelarec.escapecroatioaservices.repository.CityRepository;
+import hr.tvz.zdelarec.escapecroatioaservices.service.progress.ProgressService;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,19 +39,25 @@ public class CityServiceImpl implements CityService {
     @Autowired
     private ModelMapper modelMapper;
 
+    /**
+     * Autowired {@link ProgressService}.
+     */
+    @Autowired
+    private ProgressService progressService;
+
     private CityMapper cityMapper;
 
     @Override
-    public List<CityDto> getAllCities() {
-        cityMapper = new CityMapper(modelMapper);
+    public List<CityDto> getAllCities(final String userId) {
+        cityMapper = new CityMapper(modelMapper, progressService, userId);
         final List<City> cityList = (List<City>) cityRepository.findAll();
         LOGGER.info("Found {} results", cityList.size());
         return cityList.stream().map(city -> cityMapper.mapToDto(city)).collect(Collectors.toList());
     }
 
     @Override
-    public CityDto getCityById(final Integer id) {
-        cityMapper = new CityMapper(modelMapper);
+    public CityDto getCityById(final Integer id, final String userId) {
+        cityMapper = new CityMapper(modelMapper, progressService, userId);
         final City city = cityRepository.findById(id).orElseThrow();
         LOGGER.info("Fetched city: {}", city);
         return cityMapper.mapToDto(city);
