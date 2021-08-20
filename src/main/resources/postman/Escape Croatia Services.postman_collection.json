@@ -505,6 +505,30 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Information",
+			"item": [
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/information",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"information"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
