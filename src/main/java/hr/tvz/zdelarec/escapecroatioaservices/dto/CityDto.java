@@ -14,8 +14,8 @@ public class CityDto {
      */
     public static final String CONTENT_TYPE = "application/city.v1+json";
 
-    @NotNull
     private Integer id;
+    @NotNull
     private String name;
     private ProgressDto progress;
 

@@ -1,4 +1,4 @@
-package hr.tvz.zdelarec.escapecroatioaservices.controller;
+package hr.tvz.zdelarec.escapecroatioaservices.api.controller;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;

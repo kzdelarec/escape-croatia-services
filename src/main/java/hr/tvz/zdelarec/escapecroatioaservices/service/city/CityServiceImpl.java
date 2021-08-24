@@ -56,10 +56,36 @@ public class CityServiceImpl implements CityService {
     }
 
     @Override
+    public List<CityDto> getAllCities() {
+        final List<City> cityList = (List<City>) cityRepository.findAll();
+        LOGGER.info("Found {} results", cityList.size());
+        return cityList.stream().map(city -> modelMapper.map(city, CityDto.class)).collect(Collectors.toList());
+    }
+
+    @Override
     public CityDto getCityById(final Integer id, final String userId) {
         cityMapper = new CityMapper(modelMapper, progressService, userId);
         final City city = cityRepository.findById(id).orElseThrow();
         LOGGER.info("Fetched city: {}", city);
         return cityMapper.mapToDto(city);
     }
+
+    @Override
+    public CityDto getCityById(final Integer id) {
+        final City city = cityRepository.findById(id).orElseThrow();
+        LOGGER.info("Fetched city: {}", city);
+        return modelMapper.map(city, CityDto.class);
+    }
+
+    @Override
+    public CityDto save(final CityDto cityDto) {
+        return modelMapper.map(cityRepository.save(modelMapper.map(cityDto, City.class)), CityDto.class);
+    }
+
+    @Override
+    public void delete(final CityDto cityDto) {
+       cityRepository.delete(modelMapper.map(cityDto, City.class));
+    }
+
+
 }

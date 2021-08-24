@@ -1,5 +1,5 @@
 /**
- * This package contains the REST layer and all classes related to the REST service.
+ * This package contains the web controller classes.
  *
  * @author kristijan.zdelarec
  */

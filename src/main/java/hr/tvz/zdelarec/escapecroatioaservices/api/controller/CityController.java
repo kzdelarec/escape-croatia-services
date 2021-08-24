@@ -1,4 +1,4 @@
-package hr.tvz.zdelarec.escapecroatioaservices.controller;
+package hr.tvz.zdelarec.escapecroatioaservices.api.controller;
 
 import hr.tvz.zdelarec.escapecroatioaservices.dto.CityDto;
 import hr.tvz.zdelarec.escapecroatioaservices.service.city.CityService;
