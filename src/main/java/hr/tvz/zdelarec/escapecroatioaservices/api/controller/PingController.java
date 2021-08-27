@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author kristijan.zdelarec
  */
 @RestController
-@RequestMapping(path = "/ping", produces = "application/json")
+@RequestMapping(path = "/api/ping", produces = "application/json")
 @CrossOrigin
 public class PingController {
 

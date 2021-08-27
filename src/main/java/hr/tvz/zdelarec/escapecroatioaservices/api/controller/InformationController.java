@@ -24,7 +24,7 @@ public class InformationController {
     /**
      * Base URL for Information controller.
      */
-    public static final String BASE_URL = "/information";
+    public static final String BASE_URL = "/api/information";
 
     /**
      * Logger.

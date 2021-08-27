@@ -23,7 +23,7 @@ public class UserController {
     /**
      * Base URL for User controller.
      */
-    public static final String BASE_URL = "/user";
+    public static final String BASE_URL = "/api/user";
 
     /**
      * Logger.

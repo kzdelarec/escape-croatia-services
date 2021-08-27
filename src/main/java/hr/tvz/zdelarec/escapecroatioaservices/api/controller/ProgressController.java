@@ -24,7 +24,7 @@ public class ProgressController {
     /**
      * Base URL for Progress controller.
      */
-    public static final String BASE_URL = "/progress";
+    public static final String BASE_URL = "/api/progress";
 
     /**
      * Logger.

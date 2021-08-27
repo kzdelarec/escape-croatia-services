@@ -26,7 +26,7 @@ public class PlaceController {
     /**
      * Base URL for Place controller.
      */
-    public static final String BASE_URL = "/place";
+    public static final String BASE_URL = "/api/place";
 
     /**
      * Logger.

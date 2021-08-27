@@ -26,7 +26,7 @@ public class FinishedRoomController {
     /**
      * Base URL for Finished rooms controller.
      */
-    public static final String BASE_URL = "/finished";
+    public static final String BASE_URL = "/api/finished";
 
     /**
      * Logger.

@@ -26,7 +26,7 @@ public class FavoriteController {
     /**
      * Base URL for Favorite controller.
      */
-    public static final String BASE_URL = "/favorite";
+    public static final String BASE_URL = "/api/favorite";
 
     /**
      * Logger.

@@ -27,7 +27,7 @@ public class RoomController {
     /**
      * Base URL for Room controller.
      */
-    public static final String BASE_URL = "/room";
+    public static final String BASE_URL = "/api/room";
 
     /**
      * Logger.
