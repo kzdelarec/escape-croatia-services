@@ -14,13 +14,18 @@ public class PlaceDto {
      */
     public static final String CONTENT_TYPE = "application/place.v1+json";
 
-    @NotNull
+
     private Integer id;
+    @NotNull
     private String name;
+    @NotNull
     private String web;
+    @NotNull
     private String mail;
+    @NotNull
     private String phone;
     private Boolean favorite;
+    @NotNull
     private Integer cityId;
 
     public Integer getId() {

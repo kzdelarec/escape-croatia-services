@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<div th:replace="fragments :: head"></div>
+
+<body>
+    <div th:replace="fragments :: navbar"></div>
+    <div class="container">
+        <div class="intro">
+            <h2 class="text-center">Escape Croatia - Places</h2>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <a class="btn btn-success" role="button" th:href="@{/places/new}" title="new" style="border-radius: 25px;padding: 8px 16px;margin: 16px 0;">New Place</a>
+                <table class="table table-striped table-bordered table-hover" style="background: white;">
+                    <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th>Web</th>
+                        <th>Mail</th>
+                        <th>Phone</th>
+                        <th>City</th>
+                        <th style="width: 10%;" scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:if="${places.empty}">
+                        <td colspan="6"> Nothing to show</td>
+                    </tr>
+                    <tr th:each="place : ${places}">
+                        <td><span th:text="${place.name}"> Name </span></td>
+                        <td><span th:text="${place.web}"> Web </span></td>
+                        <td><span th:text="${place.mail}"> Mail </span></td>
+                        <td><span th:text="${place.phone}"> Phone </span></td>
+                        <td><span th:text="${cities.get(place.cityId).name}"> City </span></td>
+                        <td>
+                            <a class="btn btn-primary" role="button" th:href="@{/places/edit/{id}(id = ${place.id})}" title="edit" ><i class="fa fa-pencil"></i></a>
+                            <a class="btn btn-danger" role="button" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/places/delete/{id}(id = ${place.id})}" title="delete" ><i class="fa fa-trash"></i></a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div th:replace="fragments :: scripts"></div>
+</body>
+
+</html>

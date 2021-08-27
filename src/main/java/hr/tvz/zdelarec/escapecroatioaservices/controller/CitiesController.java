@@ -43,7 +43,7 @@ public class CitiesController {
      */
     @GetMapping
     public String showCities(final Model model) {
-        LOGGER.debug("Showing dashboard page");
+        LOGGER.debug("Showing cities page");
         final List<CityDto> cityDtoList = cityService.getAllCities();
         model.addAttribute("cities", cityDtoList);
         return "cities";

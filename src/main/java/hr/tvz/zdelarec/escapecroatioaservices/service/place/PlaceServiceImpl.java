@@ -59,12 +59,26 @@ public class PlaceServiceImpl implements PlaceService {
     }
 
     @Override
+    public List<PlaceDto> getAllPlaces() {
+        final List<Place> placeList = (List<Place>) placeRepository.findAll();
+        LOGGER.info("Found {} results", placeList.size());
+        return placeList.stream().map(place -> modelMapper.map(place, PlaceDto.class)).collect(Collectors.toList());
+    }
+
+    @Override
     public PlaceDto getPlaceById(final Integer id, final String userId) {
         final List<FavoriteDto> favoriteDtoList = favoriteService.getAllFavorites(userId);
         placeMapper = new PlaceMapper(modelMapper, favoriteDtoList);
         final Place place = placeRepository.findById(id).orElseThrow();
         LOGGER.info("Found {} user {}", place, userId);
         return placeMapper.mapToDto(place);
+    }
+
+    @Override
+    public PlaceDto getPlaceById(final Integer id) {
+        final Place place = placeRepository.findById(id).orElseThrow();
+        LOGGER.info("Found {}", place);
+        return modelMapper.map(place, PlaceDto.class);
     }
 
     @Override
@@ -77,11 +91,28 @@ public class PlaceServiceImpl implements PlaceService {
     }
 
     @Override
+    public List<PlaceDto> getAllPlacesByCityId(Integer id) {
+        final List<Place> placeList = placeRepository.findAllByCityId(id);
+        LOGGER.info("Found {} results with place ID {}", placeList.size(), id);
+        return placeList.stream().map(place -> modelMapper.map(place, PlaceDto.class)).collect(Collectors.toList());
+    }
+
+    @Override
     public List<PlaceDto> getAllByIdIn(final String userId) {
         final List<FavoriteDto> favoriteDtoList = favoriteService.getAllFavorites(userId);
         placeMapper = new PlaceMapper(modelMapper, favoriteDtoList);
         final List<Place> placeList = placeRepository.findAllByIdIn(favoriteDtoList.stream().map(FavoriteDto::getPlaceId).collect(Collectors.toList()));
         LOGGER.info("Found {} results for user {}", placeList.size(), userId);
         return placeList.stream().map(place -> placeMapper.mapToDto(place)).collect(Collectors.toList());
+    }
+
+    @Override
+    public PlaceDto save(final PlaceDto placeDto) {
+        return modelMapper.map(placeRepository.save(modelMapper.map(placeDto, Place.class)), PlaceDto.class);
+    }
+
+    @Override
+    public void delete(final PlaceDto placeDto) {
+        placeRepository.delete(modelMapper.map(placeDto, Place.class));
     }
 }
