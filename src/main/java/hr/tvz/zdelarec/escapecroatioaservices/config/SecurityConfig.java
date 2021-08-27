@@ -35,7 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
-        http.csrf().ignoringAntMatchers("/login");
+        http.csrf().ignoringAntMatchers("/login", "/api/**");
         http.headers().frameOptions().sameOrigin();
         http
                 .authorizeRequests()
