@@ -14,15 +14,21 @@ public class RoomDto {
      */
     public static final String CONTENT_TYPE = "application/room.v1+json";
 
-    @NotNull
+
     private Integer id;
+    @NotNull
     private String name;
+    @NotNull
     private String address;
+    @NotNull
     private String players;
+    @NotNull
     private Integer time;
     private String reservationUrl;
+    @NotNull
     private Boolean isActive;
     private Boolean isFinished;
+    @NotNull
     private Integer placeId;
     private Integer cityId;
 
@@ -74,11 +80,11 @@ public class RoomDto {
         this.reservationUrl = reservationUrl;
     }
 
-    public Boolean getActive() {
+    public Boolean getIsActive() {
         return isActive;
     }
 
-    public void setActive(final Boolean active) {
+    public void setIsActive(final Boolean active) {
         isActive = active;
     }
 

@@ -64,7 +64,7 @@ public class PlacesController {
 
     /**
      * Get places view page by city identifier.
-     *
+     * @param id {@link CityDto} identifier
      * @param model view model
      * @return view name
      */

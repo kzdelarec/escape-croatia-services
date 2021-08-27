@@ -87,11 +87,11 @@ public class Room {
         this.reservationUrl = reservationUrl;
     }
 
-    public Boolean getActive() {
+    public Boolean getIsActive() {
         return isActive;
     }
 
-    public void setActive(final Boolean active) {
+    public void setIsActive(final Boolean active) {
         isActive = active;
     }
 

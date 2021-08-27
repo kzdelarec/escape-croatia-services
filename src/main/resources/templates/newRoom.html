@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div th:replace="fragments :: head"></div>
+
+<body>
+    <div th:replace="fragments :: navbar"></div>
+    <div class="contact-clean">
+        <form method="post" th:action="@{/rooms/save}", th:object="${roomDto}">
+            <h2 class="text-center">Create Room</h2>
+            <input class="form-control" th:field="*{id}" type="hidden">
+            <div class="form-group has-success"><input class="form-control" type="text" name="name" placeholder="Name" th:field="*{name}" required></div>
+            <div class="form-group has-success"><input class="form-control" type="text" name="address" placeholder="Address" th:field="*{address}" required></div>
+            <div class="form-group has-success"><input class="form-control" type="text" name="players" placeholder="Number of players: 1-5" th:field="*{players}" required></div>
+            <div class="form-group has-success"><input class="form-control" type="number" name="time" placeholder="Duration" th:field="*{time}" required></div>
+            <div class="form-group has-success"><input class="form-control" type="text" name="reservationUrl" placeholder="Reservation URL" th:field="*{reservationUrl}"></div>
+            <div class="form-group has-success"><div class="custom-control custom-switch">
+                <input type="checkbox" name="jelAktivan" th:field="*{isActive}" th:value="*{isActive}" class="custom-control-input" id="customSwitches">
+                <label class="custom-control-label" for="customSwitches">Is Active?</label>
+            </div></div>
+            <div class="form-group">
+                <select class="form-control" id="vrstaT" th:field="*{placeId}" required>
+                    <option value="" >Place</option>
+                    <option th:each="place : ${places}"
+                            th:value="${place.id}"
+                            th:text="${place.name}"
+                            th:selected="${place}"></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+                <button class="btn btn-primary" type="submit">Save</button>
+            </div>
+        </form>
+    </div>
+    <div th:replace="fragments :: scripts"></div>
+</body>
+
+</html>

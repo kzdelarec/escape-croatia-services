@@ -91,7 +91,7 @@ public class PlaceServiceImpl implements PlaceService {
     }
 
     @Override
-    public List<PlaceDto> getAllPlacesByCityId(Integer id) {
+    public List<PlaceDto> getAllPlacesByCityId(final Integer id) {
         final List<Place> placeList = placeRepository.findAllByCityId(id);
         LOGGER.info("Found {} results with place ID {}", placeList.size(), id);
         return placeList.stream().map(place -> modelMapper.map(place, PlaceDto.class)).collect(Collectors.toList());

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<div th:replace="fragments :: head"></div>
+
+<body>
+    <div th:replace="fragments :: navbar"></div>
+    <div class="container">
+        <div class="intro">
+            <h2 class="text-center">Escape Croatia - Rooms</h2>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <a class="btn btn-success" role="button" th:href="@{/rooms/new}" title="new" style="border-radius: 25px;padding: 8px 16px;margin: 16px 0;">New Room</a>
+                <table class="table table-striped table-bordered table-hover" style="background: white;">
+                    <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th>Address</th>
+                        <th>Number of players</th>
+                        <th>Duration</th>
+                        <th>Reservation URL</th>
+                        <th>Active?</th>
+                        <th>Place</th>
+                        <th>City</th>
+
+                        <th style="width: 10%;" scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:if="${rooms.empty}">
+                        <td colspan="9"> Nothing to show</td>
+                    </tr>
+                    <tr th:each="room : ${rooms}">
+                        <td><span th:text="${room.name}"> Name </span></td>
+                        <td><span th:text="${room.address}"> Address </span></td>
+                        <td><span th:text="${room.players}"> Number of players </span></td>
+                        <td><span th:text="${room.time} + min"> Duration </span></td>
+                        <td><span th:text="${room.reservationUrl}"> Reservation url </span></td>
+                        <td th:if="${room.isActive}">
+                            <span th:text="Yes"> Is active </span>
+                        </td>
+                        <td th:unless="${room.isActive}">
+                            <span th:text="No"> Is active </span>
+                        </td>
+                        <td><span th:text="${places.get(room.placeId).name}"> Place </span></td>
+                        <td><span th:text="${cities.get(room.cityId).name}"> City </span></td>
+                        <td>
+                            <a class="btn btn-primary" role="button" th:href="@{/rooms/edit/{id}(id = ${room.id})}" title="edit" ><i class="fa fa-pencil"></i></a>
+                            <a class="btn btn-danger" role="button" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/rooms/delete/{id}(id = ${room.id})}" title="delete" ><i class="fa fa-trash"></i></a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div th:replace="fragments :: scripts"></div>
+</body>
+
+</html>

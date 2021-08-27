@@ -27,7 +27,7 @@
                     <tr th:if="${places.empty}">
                         <td colspan="6"> Nothing to show</td>
                     </tr>
-                    <tr th:each="place : ${places}">
+                    <tr th:each="place : ${places}" th:onClick="'window.location.href=\'/rooms/' + ${place.id} + '\''">
                         <td><span th:text="${place.name}"> Name </span></td>
                         <td><span th:text="${place.web}"> Web </span></td>
                         <td><span th:text="${place.mail}"> Mail </span></td>
