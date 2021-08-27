@@ -27,7 +27,7 @@ public class CityController {
     /**
      * Base URL for City controller.
      */
-    public static final String BASE_URL = "/city";
+    public static final String BASE_URL = "/api/city";
 
     /**
      * Logger.
