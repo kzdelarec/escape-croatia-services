@@ -9,6 +9,7 @@ import hr.tvz.zdelarec.escapecroatioaservices.service.room.RoomService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
@@ -80,6 +81,9 @@ public class RoomsController {
      * @return view name
      */
     @GetMapping(path = "/{id}")
+    @PreAuthorize("hasRole(T(hr.tvz.zdelarec.escapecroatioaservices.enumeration.Permission).ROLE_ADMIN.toString())" +
+            "or hasRole(T(hr.tvz.zdelarec.escapecroatioaservices.enumeration.Permission).ROLE_CONTRIBUTOR.toString())"
+    )
     public String showRoomsByPlaceId(final Model model, @PathVariable("id") final Integer id) {
         LOGGER.debug("Showing rooms page");
         final Map<Integer, CityDto> cityMap = cityService.getAllCities().stream().collect(Collectors.toMap(CityDto::getId, Function.identity()));
@@ -97,6 +101,9 @@ public class RoomsController {
      * @return view name
      */
     @GetMapping(path = "/new")
+    @PreAuthorize("hasRole(T(hr.tvz.zdelarec.escapecroatioaservices.enumeration.Permission).ROLE_ADMIN.toString())" +
+            "or hasRole(T(hr.tvz.zdelarec.escapecroatioaservices.enumeration.Permission).ROLE_CONTRIBUTOR.toString())"
+    )
     public String newRoom(final Model model) {
         model.addAttribute("roomDto", new RoomDto());
         model.addAttribute("places", placeService.getAllPlaces());
@@ -110,6 +117,9 @@ public class RoomsController {
      * @return view name
      */
     @PostMapping(path = "/save")
+    @PreAuthorize("hasRole(T(hr.tvz.zdelarec.escapecroatioaservices.enumeration.Permission).ROLE_ADMIN.toString())" +
+            "or hasRole(T(hr.tvz.zdelarec.escapecroatioaservices.enumeration.Permission).ROLE_CONTRIBUTOR.toString())"
+    )
     public String saveRoom(@Validated final RoomDto roomDto, final Model model) {
         roomDto.setCityId(placeService.getPlaceById(roomDto.getPlaceId()).getCityId());
         roomService.save(roomDto);
@@ -123,6 +133,9 @@ public class RoomsController {
      * @return view name
      */
     @GetMapping(path = "/edit/{id}")
+    @PreAuthorize("hasRole(T(hr.tvz.zdelarec.escapecroatioaservices.enumeration.Permission).ROLE_ADMIN.toString())" +
+            "or hasRole(T(hr.tvz.zdelarec.escapecroatioaservices.enumeration.Permission).ROLE_CONTRIBUTOR.toString())"
+    )
     public String editRoom(final Model model, @PathVariable("id") final Integer id) {
         model.addAttribute(roomService.getRoomById(id));
         model.addAttribute("places", placeService.getAllPlaces());
@@ -136,10 +149,10 @@ public class RoomsController {
      * @return view name
      */
     @GetMapping(path = "/delete/{id}")
+    @PreAuthorize("hasRole(T(hr.tvz.zdelarec.escapecroatioaservices.enumeration.Permission).ROLE_ADMIN.toString())")
     public String deleteRoom(final Model model, @PathVariable("id") final Integer id) {
         roomService.delete(roomService.getRoomById(id));
         return "redirect:/rooms";
     }
-
 
 }

@@ -7,6 +7,7 @@ import hr.tvz.zdelarec.escapecroatioaservices.service.place.PlaceService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
@@ -53,6 +54,9 @@ public class PlacesController {
      * @return view name
      */
     @GetMapping
+    @PreAuthorize("hasRole(T(hr.tvz.zdelarec.escapecroatioaservices.enumeration.Permission).ROLE_ADMIN.toString())" +
+            "or hasRole(T(hr.tvz.zdelarec.escapecroatioaservices.enumeration.Permission).ROLE_CONTRIBUTOR.toString())"
+    )
     public String showPlaces(final Model model) {
         LOGGER.debug("Showing places page");
         final Map<Integer, CityDto> cityMap = cityService.getAllCities().stream().collect(Collectors.toMap(CityDto::getId, Function.identity()));
@@ -69,6 +73,9 @@ public class PlacesController {
      * @return view name
      */
     @GetMapping(path = "/{id}")
+    @PreAuthorize("hasRole(T(hr.tvz.zdelarec.escapecroatioaservices.enumeration.Permission).ROLE_ADMIN.toString())" +
+            "or hasRole(T(hr.tvz.zdelarec.escapecroatioaservices.enumeration.Permission).ROLE_CONTRIBUTOR.toString())"
+    )
     public String showPlacesByCityId(final Model model, @PathVariable("id") final Integer id) {
         LOGGER.debug("Showing places page");
         final Map<Integer, CityDto> cityMap = cityService.getAllCities().stream().collect(Collectors.toMap(CityDto::getId, Function.identity()));
@@ -84,6 +91,9 @@ public class PlacesController {
      * @return view name
      */
     @GetMapping(path = "/new")
+    @PreAuthorize("hasRole(T(hr.tvz.zdelarec.escapecroatioaservices.enumeration.Permission).ROLE_ADMIN.toString())" +
+            "or hasRole(T(hr.tvz.zdelarec.escapecroatioaservices.enumeration.Permission).ROLE_CONTRIBUTOR.toString())"
+    )
     public String newPlace(final Model model) {
         model.addAttribute("placeDto", new PlaceDto());
         model.addAttribute("cities", cityService.getAllCities());
@@ -97,6 +107,9 @@ public class PlacesController {
      * @return view name
      */
     @PostMapping(path = "/save")
+    @PreAuthorize("hasRole(T(hr.tvz.zdelarec.escapecroatioaservices.enumeration.Permission).ROLE_ADMIN.toString())" +
+            "or hasRole(T(hr.tvz.zdelarec.escapecroatioaservices.enumeration.Permission).ROLE_CONTRIBUTOR.toString())"
+    )
     public String savePlace(@Validated final PlaceDto placeDto, final Model model) {
         placeService.save(placeDto);
         return "redirect:/places";
@@ -109,6 +122,9 @@ public class PlacesController {
      * @return view name
      */
     @GetMapping(path = "/edit/{id}")
+    @PreAuthorize("hasRole(T(hr.tvz.zdelarec.escapecroatioaservices.enumeration.Permission).ROLE_ADMIN.toString())" +
+            "or hasRole(T(hr.tvz.zdelarec.escapecroatioaservices.enumeration.Permission).ROLE_CONTRIBUTOR.toString())"
+    )
     public String editPlace(final Model model, @PathVariable("id") final Integer id) {
         model.addAttribute(placeService.getPlaceById(id));
         model.addAttribute("cities", cityService.getAllCities());
@@ -122,10 +138,9 @@ public class PlacesController {
      * @return view name
      */
     @GetMapping(path = "/delete/{id}")
+    @PreAuthorize("hasRole(T(hr.tvz.zdelarec.escapecroatioaservices.enumeration.Permission).ROLE_ADMIN.toString())")
     public String deletePlace(final Model model, @PathVariable("id") final Integer id) {
         placeService.delete(placeService.getPlaceById(id));
         return "redirect:/places";
     }
-
-
 }
