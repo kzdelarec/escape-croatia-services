@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <div th:replace="fragments :: head"></div>
 
@@ -32,8 +32,20 @@
                         </div>
                     </a>
                 </div>
-                <div class="col-md-4 col-sm-6 item"><a href="#"></a></div>
-                <div class="col-md-4 col-sm-6 item"><a href="#"></a></div>
+                <div class="col-md-4 col-sm-6 item" sec:authorize="hasRole('ROLE_ADMIN')">
+                    <a th:href="@{/testers}">
+                        <div class="box"><i class="material-icons icon">verified_user</i>
+                            <h3 class="name">Testers</h3>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4 col-sm-6 item" sec:authorize="hasRole('ROLE_ADMIN')">
+                    <a th:href="@{/contributors}">
+                        <div class="box"><i class="material-icons icon">group_add</i>
+                            <h3 class="name">Contributors</h3>
+                        </div>
+                    </a>
+                </div>
                 <div class="col-md-4 col-sm-6 item"><a href="#"></a></div>
             </div>
         </div>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div th:replace="fragments :: head"></div>
+
+<body>
+    <div th:replace="fragments :: navbar"></div>
+    <div class="contact-clean">
+        <form method="post" th:action="@{/contributors/save}", th:object="${contributorDto}">
+            <h2 class="text-center">New Contributor</h2>
+            <input class="form-control" th:field="*{id}" type="hidden">
+            <div class="form-group has-success"><input class="form-control" type="text" name="name" placeholder="Name" th:field="*{name}" required></div>
+            <div class="form-group has-success"><input class="form-control" type="text" name="url" placeholder="URL" th:field="*{url}"></div>
+            <div class="form-group">
+                <select class="form-control" id="vrstaT" th:field="*{type}" required>
+                    <option value="" >Contribution type</option>
+                    <option th:each="cType : ${types}"
+                            th:value="${cType}"
+                            th:text="${cType}"
+                            th:selected="${type}"></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+                <button class="btn btn-primary" type="submit">Save</button>
+            </div>
+        </form>
+    </div>
+    <div th:replace="fragments :: scripts"></div>
+</body>
+
+</html>

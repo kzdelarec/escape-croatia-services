@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<div th:replace="fragments :: head"></div>
+
+<body>
+    <div th:replace="fragments :: navbar"></div>
+    <div class="container">
+        <div class="intro">
+            <h2 class="text-center">Escape Croatia - Testers</h2>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <a class="btn btn-success" role="button" th:href="@{/testers/new}" title="new" style="border-radius: 25px;padding: 8px 16px;margin: 16px 0;">New Tester</a>
+                <table class="table table-striped table-bordered table-hover" style="background: white;">
+                    <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th style="width: 10%;" scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:if="${testers.empty}">
+                        <td colspan="2"> Nothing to show</td>
+                    </tr>
+                    <tr th:each="tester : ${testers}">
+                        <td><span th:text="${tester.name}"> Name </span></td>
+                        <td>
+                            <a class="btn btn-primary" role="button" th:href="@{/testers/edit/{id}(id = ${tester.id})}" title="edit" ><i class="fa fa-pencil"></i></a>
+                            <a class="btn btn-danger" role="button" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/testers/delete/{id}(id = ${tester.id})}" title="delete" ><i class="fa fa-trash"></i></a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div th:replace="fragments :: scripts"></div>
+</body>
+
+</html>

@@ -16,9 +16,9 @@ public class TesterDto {
      */
     public static final String CONTENT_TYPE = "application/tester.v1+json";
 
-    @NotNull
     @JsonIgnore
     private Integer id;
+    @NotNull
     private String name;
 
     public Integer getId() {

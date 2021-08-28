@@ -2,7 +2,6 @@ package hr.tvz.zdelarec.escapecroatioaservices.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,9 +21,6 @@ public class DashboardController {
      * @return view name
      */
     @GetMapping
-    @PreAuthorize("hasRole(T(hr.tvz.zdelarec.escapecroatioaservices.enumeration.Permission).ROLE_ADMIN.toString())" +
-            "or hasRole(T(hr.tvz.zdelarec.escapecroatioaservices.enumeration.Permission).ROLE_CONTRIBUTOR.toString())"
-    )
     public String showIndex() {
         LOGGER.debug("Showing dashboard page");
         return "dashboard";

@@ -5,7 +5,6 @@ import hr.tvz.zdelarec.escapecroatioaservices.service.city.CityService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
@@ -43,9 +42,6 @@ public class CitiesController {
      * @return view name
      */
     @GetMapping
-    @PreAuthorize("hasRole(T(hr.tvz.zdelarec.escapecroatioaservices.enumeration.Permission).ROLE_ADMIN.toString())" +
-        "or hasRole(T(hr.tvz.zdelarec.escapecroatioaservices.enumeration.Permission).ROLE_CONTRIBUTOR.toString())"
-    )
     public String showCities(final Model model) {
         LOGGER.debug("Showing cities page");
         final List<CityDto> cityDtoList = cityService.getAllCities();
@@ -59,9 +55,6 @@ public class CitiesController {
      * @return view name
      */
     @GetMapping(path = "/new")
-    @PreAuthorize("hasRole(T(hr.tvz.zdelarec.escapecroatioaservices.enumeration.Permission).ROLE_ADMIN.toString())" +
-            "or hasRole(T(hr.tvz.zdelarec.escapecroatioaservices.enumeration.Permission).ROLE_CONTRIBUTOR.toString())"
-    )
     public String newCity(final Model model) {
         model.addAttribute(new CityDto());
         return "newCity";
@@ -74,9 +67,6 @@ public class CitiesController {
      * @return view name
      */
     @PostMapping(path = "/save")
-    @PreAuthorize("hasRole(T(hr.tvz.zdelarec.escapecroatioaservices.enumeration.Permission).ROLE_ADMIN.toString())" +
-            "or hasRole(T(hr.tvz.zdelarec.escapecroatioaservices.enumeration.Permission).ROLE_CONTRIBUTOR.toString())"
-    )
     public String saveCity(@Validated final CityDto cityDto, final Model model) {
         cityService.save(cityDto);
         return "redirect:/cities";
@@ -89,9 +79,6 @@ public class CitiesController {
      * @return view name
      */
     @GetMapping(path = "/edit/{id}")
-    @PreAuthorize("hasRole(T(hr.tvz.zdelarec.escapecroatioaservices.enumeration.Permission).ROLE_ADMIN.toString())" +
-            "or hasRole(T(hr.tvz.zdelarec.escapecroatioaservices.enumeration.Permission).ROLE_CONTRIBUTOR.toString())"
-    )
     public String editCity(final Model model, @PathVariable("id") final Integer id) {
         model.addAttribute(cityService.getCityById(id));
         return "newCity";
@@ -104,7 +91,6 @@ public class CitiesController {
      * @return view name
      */
     @GetMapping(path = "/delete/{id}")
-    @PreAuthorize("hasRole(T(hr.tvz.zdelarec.escapecroatioaservices.enumeration.Permission).ROLE_ADMIN.toString())")
     public String deleteCity(final Model model, @PathVariable("id") final Integer id) {
         cityService.delete(cityService.getCityById(id));
         return "redirect:/cities";
