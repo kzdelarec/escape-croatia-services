@@ -19,6 +19,8 @@ public class RoomDto {
     @NotNull
     private String name;
     @NotNull
+    private String nameLocal;
+    @NotNull
     private String address;
     @NotNull
     private String players;
@@ -46,6 +48,14 @@ public class RoomDto {
 
     public void setName(final String name) {
         this.name = name;
+    }
+
+    public String getNameLocal() {
+        return nameLocal;
+    }
+
+    public void setNameLocal(final String nameLocal) {
+        this.nameLocal = nameLocal;
     }
 
     public String getAddress() {
@@ -117,6 +127,7 @@ public class RoomDto {
         return "RoomDto{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", nameLocal='" + nameLocal + '\'' +
                 ", address='" + address + '\'' +
                 ", players='" + players + '\'' +
                 ", time=" + time +

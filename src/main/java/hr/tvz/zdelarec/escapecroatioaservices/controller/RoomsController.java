@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -65,7 +66,7 @@ public class RoomsController {
         LOGGER.debug("Showing rooms page");
         final Map<Integer, CityDto> cityMap = cityService.getAllCities().stream().collect(Collectors.toMap(CityDto::getId, Function.identity()));
         final Map<Integer, PlaceDto> placesMap = placeService.getAllPlaces().stream().collect(Collectors.toMap(PlaceDto::getId, Function.identity()));
-        final List<RoomDto> roomDtoList = roomService.getAllRooms();
+        final List<RoomDto> roomDtoList = roomService.getAllRooms().stream().sorted(Comparator.comparing(RoomDto::getPlaceId)).collect(Collectors.toList());
         model.addAttribute("rooms", roomDtoList);
         model.addAttribute("cities", cityMap);
         model.addAttribute("places", placesMap);

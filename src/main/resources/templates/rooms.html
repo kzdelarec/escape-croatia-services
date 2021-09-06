@@ -16,10 +16,10 @@
                     <thead>
                     <tr>
                         <th scope="col">Name</th>
+                        <th>Local Name</th>
                         <th>Address</th>
                         <th>Number of players</th>
                         <th>Duration</th>
-                        <th>Reservation URL</th>
                         <th>Active?</th>
                         <th>Place</th>
                         <th>City</th>
@@ -33,10 +33,10 @@
                     </tr>
                     <tr th:each="room : ${rooms}">
                         <td><span th:text="${room.name}"> Name </span></td>
+                        <td><span th:text="${room.nameLocal}"> Local Name </span></td>
                         <td><span th:text="${room.address}"> Address </span></td>
                         <td><span th:text="${room.players}"> Number of players </span></td>
                         <td><span th:text="${room.time} + min"> Duration </span></td>
-                        <td><span th:text="${room.reservationUrl}"> Reservation url </span></td>
                         <td th:if="${room.isActive}">
                             <span th:text="Yes"> Is active </span>
                         </td>

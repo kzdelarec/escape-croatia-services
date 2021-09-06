@@ -1,7 +1,5 @@
 package hr.tvz.zdelarec.escapecroatioaservices.entity;
 
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,14 +19,13 @@ public class Room {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
+    private String nameLocal;
     private String address;
     private String players;
     private Integer time;
     private String reservationUrl;
     private Boolean isActive;
-    @Column(name = "place_id")
     private Integer placeId;
-    @Column(name = "city_id")
     private Integer cityId;
 
     public Integer getId() {
@@ -45,6 +42,14 @@ public class Room {
 
     public void setName(final String name) {
         this.name = name;
+    }
+
+    public String getNameLocal() {
+        return nameLocal;
+    }
+
+    public void setNameLocal(final String nameLocal) {
+        this.nameLocal = nameLocal;
     }
 
     public String getAddress() {
@@ -108,6 +113,7 @@ public class Room {
         return "Room{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", nameLocal='" + nameLocal + '\'' +
                 ", address='" + address + '\'' +
                 ", players='" + players + '\'' +
                 ", time=" + time +
