@@ -1,25 +1,25 @@
 package hr.tvz.zdelarec.escapecroatioaservices.enumeration;
 
 /**
- * Contribution type enums.
+ * Room status enums.
  *
  * @author kristijan.zdelarec
  */
-public enum ContributionTypeEnum {
+public enum RoomStatusEnum {
     /**
-     * Icons enum.
+     * Not played enum.
      */
-    ICON(0, "Icons"),
+    NOT_PLAYED(0, "Not played"),
 
     /**
-     * Animations enum.
+     * Game lost enum.
      */
-    ANIMATION(1, "Animations"),
+    GAME_LOST(1, "Game lost"),
 
     /**
-     * Data enum.
+     * Game won enum.
      */
-    DATA(2, "Data");
+    GAME_WON(2, "Game won");
 
     /**
      * Enum index.
@@ -33,12 +33,12 @@ public enum ContributionTypeEnum {
 
 
     /**
-     * {@link ContributionTypeEnum} constructor.
+     * {@link RoomStatusEnum} constructor.
      *
      * @param index enum index
      * @param value enum value
      */
-    ContributionTypeEnum(final int index, final String value) {
+    RoomStatusEnum(final int index, final String value) {
         this.index = index;
         this.value = value;
     }
@@ -47,12 +47,12 @@ public enum ContributionTypeEnum {
      * Method for getting enum via value.
      *
      * @param index enum value
-     * @return {@link ContributionTypeEnum}
+     * @return {@link RoomStatusEnum}
      */
-    public static ContributionTypeEnum getContributionType(final int index) {
-        for (final ContributionTypeEnum contributionType : values()) {
-            if (contributionType.index == index) {
-                return contributionType;
+    public static RoomStatusEnum getContributionType(final int index) {
+        for (final RoomStatusEnum roomStatus : values()) {
+            if (roomStatus.index == index) {
+                return roomStatus;
             }
         }
         throw new IllegalArgumentException("No enum type with value " + index + " found!");

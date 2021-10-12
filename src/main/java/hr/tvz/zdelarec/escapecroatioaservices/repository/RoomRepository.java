@@ -6,7 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 /**
- * Place repository.
+ * Room repository.
  *
  * @author kristijan.zdelarec
  */

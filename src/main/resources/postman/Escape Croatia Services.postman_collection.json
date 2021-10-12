@@ -6,545 +6,712 @@
 	},
 	"item": [
 		{
-			"name": "City",
+			"name": "V1",
 			"item": [
 				{
-					"name": "Get All",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/city?userId=c48865bd-a180-4b7d-b9a5-6c83a168ad21",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"city"
-							],
-							"query": [
-								{
-									"key": "userId",
-									"value": "c48865bd-a180-4b7d-b9a5-6c83a168ad21"
+					"name": "City",
+					"item": [
+						{
+							"name": "Get All",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/city?userId=c48865bd-a180-4b7d-b9a5-6c83a168ad21",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"city"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "c48865bd-a180-4b7d-b9a5-6c83a168ad21"
+										}
+									]
 								}
-							]
+							},
+							"response": []
+						},
+						{
+							"name": "Get By Id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/city/3?userId=c48865bd-a180-4b7d-b9a5-6c83a168ad21",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"city",
+										"3"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "c48865bd-a180-4b7d-b9a5-6c83a168ad21"
+										}
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				},
 				{
-					"name": "Get By Id",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/city/3?userId=c48865bd-a180-4b7d-b9a5-6c83a168ad21",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"city",
-								"3"
-							],
-							"query": [
-								{
-									"key": "userId",
-									"value": "c48865bd-a180-4b7d-b9a5-6c83a168ad21"
+					"name": "Place",
+					"item": [
+						{
+							"name": "Get All",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/place?userId=c48865bd-a180-4b7d-b9a5-6c83a168ad21",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"place"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "c48865bd-a180-4b7d-b9a5-6c83a168ad21"
+										}
+									]
 								}
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Place",
-			"item": [
-				{
-					"name": "Get All",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/place?userId=c48865bd-a180-4b7d-b9a5-6c83a168ad21",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"place"
-							],
-							"query": [
-								{
-									"key": "userId",
-									"value": "c48865bd-a180-4b7d-b9a5-6c83a168ad21"
+							},
+							"response": []
+						},
+						{
+							"name": "Get By Id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/place/1?userId=c48865bd-a180-4b7d-b9a5-6c83a168ad21",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"place",
+										"1"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "c48865bd-a180-4b7d-b9a5-6c83a168ad21"
+										}
+									]
 								}
-							]
+							},
+							"response": []
+						},
+						{
+							"name": "Get By City Id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/place/city/1?userId=c48865bd-a180-4b7d-b9a5-6c83a168ad21",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"place",
+										"city",
+										"1"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "c48865bd-a180-4b7d-b9a5-6c83a168ad21"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Favourites",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/place/favorites?userId=c48865bd-a180-4b7d-b9a5-6c83a168ad21",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"place",
+										"favorites"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "c48865bd-a180-4b7d-b9a5-6c83a168ad21"
+										}
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				},
 				{
-					"name": "Get By Id",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/place/1?userId=c48865bd-a180-4b7d-b9a5-6c83a168ad21",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"place",
-								"1"
-							],
-							"query": [
-								{
-									"key": "userId",
-									"value": "c48865bd-a180-4b7d-b9a5-6c83a168ad21"
+					"name": "Room",
+					"item": [
+						{
+							"name": "Get All",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/room?userId=c48865bd-a180-4b7d-b9a5-6c83a168ad21",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"room"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "c48865bd-a180-4b7d-b9a5-6c83a168ad21"
+										}
+									]
 								}
-							]
+							},
+							"response": []
+						},
+						{
+							"name": "Get By Id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/room/24?userId=df127d3f-eeca-4737-8581-63b993a6df60",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"room",
+										"24"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "df127d3f-eeca-4737-8581-63b993a6df60"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get By Place Id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/room/place/1?userId=c48865bd-a180-4b7d-b9a5-6c83a168ad21",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"room",
+										"place",
+										"1"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "c48865bd-a180-4b7d-b9a5-6c83a168ad21"
+										}
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				},
-				{
-					"name": "Get By City Id",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/place/city/1?userId=c48865bd-a180-4b7d-b9a5-6c83a168ad21",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"place",
-								"city",
-								"1"
-							],
-							"query": [
-								{
-									"key": "userId",
-									"value": "c48865bd-a180-4b7d-b9a5-6c83a168ad21"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get Favourites",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/place/favorites?userId=c48865bd-a180-4b7d-b9a5-6c83a168ad21",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"place",
-								"favorites"
-							],
-							"query": [
-								{
-									"key": "userId",
-									"value": "c48865bd-a180-4b7d-b9a5-6c83a168ad21"
-								}
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Room",
-			"item": [
-				{
-					"name": "Get All",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/room?userId=c48865bd-a180-4b7d-b9a5-6c83a168ad21",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"room"
-							],
-							"query": [
-								{
-									"key": "userId",
-									"value": "c48865bd-a180-4b7d-b9a5-6c83a168ad21"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get By Id",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/room/2?userId=c48865bd-a180-4b7d-b9a5-6c83a168ad21",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"room",
-								"2"
-							],
-							"query": [
-								{
-									"key": "userId",
-									"value": "c48865bd-a180-4b7d-b9a5-6c83a168ad21"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get By Place Id",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/room/place/1?userId=c48865bd-a180-4b7d-b9a5-6c83a168ad21",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"room",
-								"place",
-								"1"
-							],
-							"query": [
-								{
-									"key": "userId",
-									"value": "c48865bd-a180-4b7d-b9a5-6c83a168ad21"
-								}
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Ping",
-			"item": [
 				{
 					"name": "Ping",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/ping",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"ping"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "User",
-			"item": [
-				{
-					"name": "Get User Id",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/user",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"user"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Favorite",
-			"item": [
-				{
-					"name": "Add Favourite",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/favorites.v1+json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"userId\": \"c48865bd-a180-4b7d-b9a5-6c83a168ad21\",\r\n    \"placeId\": 2\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+					"item": [
+						{
+							"name": "Ping",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/ping",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"ping"
+									]
 								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/favorite",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"favorite"
-							]
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				},
 				{
-					"name": "Delete Favourite",
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/favorites.v1+json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"userId\": \"c48865bd-a180-4b7d-b9a5-6c83a168ad21\",\r\n    \"placeId\": 4\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+					"name": "User",
+					"item": [
+						{
+							"name": "Get User Id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/user",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"user"
+									]
 								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/favorite",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"favorite"
-							]
+							},
+							"response": []
 						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Finished rooms",
-			"item": [
-				{
-					"name": "Add Finished room",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/finished_room.v1+json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"userId\": \"c48865bd-a180-4b7d-b9a5-6c83a168ad21\",\r\n    \"cityId\": 1,\r\n    \"placeId\": 1,\r\n    \"roomId\": 2\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/finished",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"finished"
-							]
-						}
-					},
-					"response": []
+					]
 				},
 				{
-					"name": "Delete Finished room",
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/finished_room.v1+json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"userId\": \"c48865bd-a180-4b7d-b9a5-6c83a168ad21\",\r\n    \"cityId\": 1,\r\n    \"placeId\": 1,\r\n    \"roomId\": 1\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+					"name": "Favorite",
+					"item": [
+						{
+							"name": "Add Favourite",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/favorites.v1+json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userId\": \"c48865bd-a180-4b7d-b9a5-6c83a168ad21\",\r\n    \"placeId\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/favorite",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"favorite"
+									]
 								}
-							}
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "http://localhost:8080/api/finished",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"finished"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Progress",
-			"item": [
-				{
-					"name": "Get By Place Id",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/progress/place/1?userId=c48865bd-a180-4b7d-b9a5-6c83a168ad21",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"progress",
-								"place",
-								"1"
-							],
-							"query": [
-								{
-									"key": "userId",
-									"value": "c48865bd-a180-4b7d-b9a5-6c83a168ad21"
+						{
+							"name": "Delete Favourite",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/favorites.v1+json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userId\": \"c48865bd-a180-4b7d-b9a5-6c83a168ad21\",\r\n    \"placeId\": 4\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/favorite",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"favorite"
+									]
 								}
-							]
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				},
 				{
-					"name": "Get By City Id",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/progress/city/1?userId=c48865bd-a180-4b7d-b9a5-6c83a168ad21",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"progress",
-								"city",
-								"1"
-							],
-							"query": [
-								{
-									"key": "userId",
-									"value": "c48865bd-a180-4b7d-b9a5-6c83a168ad21"
+					"name": "Finished rooms",
+					"item": [
+						{
+							"name": "Add Finished room",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/finished_room.v1+json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userId\": \"c48865bd-a180-4b7d-b9a5-6c83a168ad21\",\r\n    \"cityId\": 1,\r\n    \"placeId\": 1,\r\n    \"roomId\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/finished",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"finished"
+									]
 								}
-							]
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Finished room",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/finished_room.v1+json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userId\": \"c48865bd-a180-4b7d-b9a5-6c83a168ad21\",\r\n    \"cityId\": 1,\r\n    \"placeId\": 1,\r\n    \"roomId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/finished",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"finished"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
+				},
+				{
+					"name": "Progress",
+					"item": [
+						{
+							"name": "Get By Place Id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/progress/place/1?userId=c48865bd-a180-4b7d-b9a5-6c83a168ad21",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"progress",
+										"place",
+										"1"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "c48865bd-a180-4b7d-b9a5-6c83a168ad21"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get By City Id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/progress/city/1?userId=c48865bd-a180-4b7d-b9a5-6c83a168ad21",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"progress",
+										"city",
+										"1"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "c48865bd-a180-4b7d-b9a5-6c83a168ad21"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Information",
+					"item": [
+						{
+							"name": "Get All",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/information",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"information"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Room Details",
+					"item": [
+						{
+							"name": "Get By Room Id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/roomDetails/room/24?userId=df127d3f-eeca-4737-8581-63b993a6df60",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"roomDetails",
+										"room",
+										"24"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "df127d3f-eeca-4737-8581-63b993a6df60"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add room details",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/roomDetails.v1+json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 2,\r\n    \"rating\": 3,\r\n    \"time\": \"57:28\",\r\n    \"hints\": 0,\r\n    \"numberOfPlayers\": 5,\r\n    \"imageId\": \"test\",\r\n    \"roomStatus\": \"GAME_WON\",\r\n    \"roomId\": 24,\r\n    \"userId\": \"df127d3f-eeca-4737-8581-63b993a6df60\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/roomDetails",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"roomDetails"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		},
 		{
-			"name": "Information",
+			"name": "V2",
 			"item": [
 				{
-					"name": "Get All",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/information",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"information"
-							]
+					"name": "Room V2",
+					"item": [
+						{
+							"name": "Get All",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v2/room?userId=df127d3f-eeca-4737-8581-63b993a6df60",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v2",
+										"room"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "df127d3f-eeca-4737-8581-63b993a6df60"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get By Id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v2/room/24?userId=df127d3f-eeca-4737-8581-63b993a6df60",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v2",
+										"room",
+										"24"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "df127d3f-eeca-4737-8581-63b993a6df60"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get By Place Id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v2/room/place/6?userId=df127d3f-eeca-4737-8581-63b993a6df60",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v2",
+										"room",
+										"place",
+										"6"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "df127d3f-eeca-4737-8581-63b993a6df60"
+										}
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				}
 			]
 		}
