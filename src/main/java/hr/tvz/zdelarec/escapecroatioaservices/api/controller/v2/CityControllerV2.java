@@ -1,7 +1,7 @@
 package hr.tvz.zdelarec.escapecroatioaservices.api.controller.v2;
 
 import hr.tvz.zdelarec.escapecroatioaservices.dto.CityDto;
-import hr.tvz.zdelarec.escapecroatioaservices.service.city.CityService;
+import hr.tvz.zdelarec.escapecroatioaservices.service.v2.city.CityServiceV2;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,10 +35,10 @@ public class CityControllerV2 {
     private static final Logger LOGGER = LoggerFactory.getLogger(CityControllerV2.class);
 
     /**
-     * Autowired {@link CityService}.
+     * Autowired {@link CityServiceV2}.
      */
     @Autowired
-    private CityService cityService;
+    private CityServiceV2 cityService;
 
     /**
      * Endpoint for fetching all {@link CityDto} objects.
