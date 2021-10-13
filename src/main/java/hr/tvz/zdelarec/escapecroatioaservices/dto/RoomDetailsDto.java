@@ -24,6 +24,10 @@ public class RoomDetailsDto {
     private String imageId;
     private RoomStatusEnum roomStatus;
     @NotNull
+    private Integer cityId;
+    @NotNull
+    private Integer placeId;
+    @NotNull
     private Integer roomId;
     @NotNull
     private String userId;
@@ -84,6 +88,22 @@ public class RoomDetailsDto {
         this.roomStatus = roomStatus;
     }
 
+    public Integer getCityId() {
+        return cityId;
+    }
+
+    public void setCityId(final Integer cityId) {
+        this.cityId = cityId;
+    }
+
+    public Integer getPlaceId() {
+        return placeId;
+    }
+
+    public void setPlaceId(final Integer placeId) {
+        this.placeId = placeId;
+    }
+
     public Integer getRoomId() {
         return roomId;
     }
@@ -110,6 +130,8 @@ public class RoomDetailsDto {
                 ", numberOfPlayers=" + numberOfPlayers +
                 ", imageId='" + imageId + '\'' +
                 ", roomStatus=" + roomStatus +
+                ", cityId=" + cityId +
+                ", placeId=" + placeId +
                 ", roomId=" + roomId +
                 ", userId='" + userId + '\'' +
                 '}';

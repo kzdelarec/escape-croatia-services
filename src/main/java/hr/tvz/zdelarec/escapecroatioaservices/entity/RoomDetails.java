@@ -29,6 +29,8 @@ public class RoomDetails {
     private String imageId;
     @Enumerated(EnumType.STRING)
     private RoomStatusEnum roomStatus;
+    private Integer cityId;
+    private Integer placeId;
     private Integer roomId;
     private String userId;
 
@@ -88,6 +90,22 @@ public class RoomDetails {
         this.roomStatus = roomStatus;
     }
 
+    public Integer getCityId() {
+        return cityId;
+    }
+
+    public void setCityId(final Integer cityId) {
+        this.cityId = cityId;
+    }
+
+    public Integer getPlaceId() {
+        return placeId;
+    }
+
+    public void setPlaceId(final Integer placeId) {
+        this.placeId = placeId;
+    }
+
     public Integer getRoomId() {
         return roomId;
     }
@@ -114,6 +132,8 @@ public class RoomDetails {
                 ", numberOfPlayers=" + numberOfPlayers +
                 ", imageId='" + imageId + '\'' +
                 ", roomStatus=" + roomStatus +
+                ", cityId=" + cityId +
+                ", placeId=" + placeId +
                 ", roomId=" + roomId +
                 ", userId='" + userId + '\'' +
                 '}';

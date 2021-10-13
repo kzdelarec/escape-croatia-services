@@ -1,6 +1,7 @@
 package hr.tvz.zdelarec.escapecroatioaservices.service.roomDetails;
 
 import hr.tvz.zdelarec.escapecroatioaservices.dto.RoomDetailsDto;
+import hr.tvz.zdelarec.escapecroatioaservices.enumeration.RoomStatusEnum;
 
 import java.util.List;
 
@@ -25,6 +26,14 @@ public interface RoomDetailsService {
      * @return {@link RoomDetailsDto} objects
      */
     List<RoomDetailsDto> getAllRoomDetailsByUserId(String userId);
+
+    /**
+     * Find all {@link RoomDetailsDto} objects by status.
+     * @param roomId room identifier
+     * @param status {@link RoomStatusEnum} enum
+     * @return list of {@link RoomDetailsDto} objects
+     */
+    List<RoomDetailsDto> getAllRoomDetailsByRoomIdAndRoomStatusNot(Integer roomId, RoomStatusEnum status);
 
     /**
      * Method for saving new or updated {@link RoomDetailsDto} object.

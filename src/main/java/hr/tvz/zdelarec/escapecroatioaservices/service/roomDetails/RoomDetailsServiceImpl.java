@@ -2,6 +2,7 @@ package hr.tvz.zdelarec.escapecroatioaservices.service.roomDetails;
 
 import hr.tvz.zdelarec.escapecroatioaservices.dto.RoomDetailsDto;
 import hr.tvz.zdelarec.escapecroatioaservices.entity.RoomDetails;
+import hr.tvz.zdelarec.escapecroatioaservices.enumeration.RoomStatusEnum;
 import hr.tvz.zdelarec.escapecroatioaservices.repository.RoomDetailsRepository;
 import hr.tvz.zdelarec.escapecroatioaservices.repository.RoomRepository;
 import hr.tvz.zdelarec.escapecroatioaservices.service.finishedRoom.FinishedRoomService;
@@ -63,6 +64,14 @@ public class RoomDetailsServiceImpl implements RoomDetailsService {
         LOGGER.info("Found {} results for user {}", roomDetailsList.size(), userId);
         return roomDetailsList.stream().map(roomDetails -> modelMapper.map(roomDetails, RoomDetailsDto.class)).collect(Collectors.toList());
     }
+
+    @Override
+    public List<RoomDetailsDto> getAllRoomDetailsByRoomIdAndRoomStatusNot(final Integer roomId, final RoomStatusEnum status) {
+        final List<RoomDetails> roomDetailsList = roomDetailsRepository.findAllByRoomIdAndRoomStatusNot(roomId, status);
+        LOGGER.info("Found {} results", roomDetailsList.size());
+        return roomDetailsList.stream().map(roomDetails -> modelMapper.map(roomDetails, RoomDetailsDto.class)).collect(Collectors.toList());
+    }
+
 
     @Override
     public RoomDetailsDto save(final RoomDetailsDto roomDetailsDto) {

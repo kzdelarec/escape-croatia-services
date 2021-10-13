@@ -17,7 +17,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/api/city?userId=c48865bd-a180-4b7d-b9a5-6c83a168ad21",
+									"raw": "http://localhost:8080/api/city?userId=0a5161f2-8701-4748-a209-c4658fd42dd8",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -30,7 +30,7 @@
 									"query": [
 										{
 											"key": "userId",
-											"value": "c48865bd-a180-4b7d-b9a5-6c83a168ad21"
+											"value": "0a5161f2-8701-4748-a209-c4658fd42dd8"
 										}
 									]
 								}
@@ -43,7 +43,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/api/city/3?userId=c48865bd-a180-4b7d-b9a5-6c83a168ad21",
+									"raw": "http://localhost:8080/api/city/1?userId=0a5161f2-8701-4748-a209-c4658fd42dd8",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -52,12 +52,12 @@
 									"path": [
 										"api",
 										"city",
-										"3"
+										"1"
 									],
 									"query": [
 										{
 											"key": "userId",
-											"value": "c48865bd-a180-4b7d-b9a5-6c83a168ad21"
+											"value": "0a5161f2-8701-4748-a209-c4658fd42dd8"
 										}
 									]
 								}
@@ -474,7 +474,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/api/progress/place/1?userId=c48865bd-a180-4b7d-b9a5-6c83a168ad21",
+									"raw": "http://localhost:8080/api/progress/place/6?userId=0a5161f2-8701-4748-a209-c4658fd42dd8",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -484,12 +484,12 @@
 										"api",
 										"progress",
 										"place",
-										"1"
+										"6"
 									],
 									"query": [
 										{
 											"key": "userId",
-											"value": "c48865bd-a180-4b7d-b9a5-6c83a168ad21"
+											"value": "0a5161f2-8701-4748-a209-c4658fd42dd8"
 										}
 									]
 								}
@@ -502,7 +502,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/api/progress/city/1?userId=c48865bd-a180-4b7d-b9a5-6c83a168ad21",
+									"raw": "http://localhost:8080/api/progress/city/1?userId=0a5161f2-8701-4748-a209-c4658fd42dd8",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -517,7 +517,7 @@
 									"query": [
 										{
 											"key": "userId",
-											"value": "c48865bd-a180-4b7d-b9a5-6c83a168ad21"
+											"value": "0a5161f2-8701-4748-a209-c4658fd42dd8"
 										}
 									]
 								}
@@ -618,6 +618,33 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "Statistics",
+					"item": [
+						{
+							"name": "Get By Room Id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/statistics/room/24",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"statistics",
+										"room",
+										"24"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		},
@@ -712,8 +739,151 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "Progress",
+					"item": [
+						{
+							"name": "Get By Place Id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v2/progress/place/6?userId=0a5161f2-8701-4748-a209-c4658fd42dd8",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v2",
+										"progress",
+										"place",
+										"6"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "0a5161f2-8701-4748-a209-c4658fd42dd8"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get By City Id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v2/progress/city/1?userId=0a5161f2-8701-4748-a209-c4658fd42dd8",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v2",
+										"progress",
+										"city",
+										"1"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "0a5161f2-8701-4748-a209-c4658fd42dd8"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "City",
+					"item": [
+						{
+							"name": "Get All",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v2/city?userId=0a5161f2-8701-4748-a209-c4658fd42dd8",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v2",
+										"city"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "0a5161f2-8701-4748-a209-c4658fd42dd8"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get By Id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v2/city/1?userId=0a5161f2-8701-4748-a209-c4658fd42dd8",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v2",
+										"city",
+										"1"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "0a5161f2-8701-4748-a209-c4658fd42dd8"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
+		},
+		{
+			"name": "Data migration",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/migrate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"migrate"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

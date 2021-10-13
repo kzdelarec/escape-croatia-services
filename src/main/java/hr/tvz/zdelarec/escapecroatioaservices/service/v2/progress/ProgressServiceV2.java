@@ -1,4 +1,4 @@
-package hr.tvz.zdelarec.escapecroatioaservices.service.progress;
+package hr.tvz.zdelarec.escapecroatioaservices.service.v2.progress;
 
 import hr.tvz.zdelarec.escapecroatioaservices.dto.ProgressDto;
 
@@ -7,7 +7,7 @@ import hr.tvz.zdelarec.escapecroatioaservices.dto.ProgressDto;
  *
  * @author kristijan.zdelarec
  */
-public interface ProgressService {
+public interface ProgressServiceV2 {
 
     /**
      * Method for fetching {@link ProgressDto} by city identifier for the user.
