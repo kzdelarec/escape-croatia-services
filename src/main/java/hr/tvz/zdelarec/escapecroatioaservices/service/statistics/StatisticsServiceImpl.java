@@ -42,7 +42,7 @@ public class StatisticsServiceImpl implements StatisticsService {
         final StatisticsDto statisticsDto = new StatisticsDto();
 
         //rating
-        if (roomDetailsDtoList.isEmpty()) {
+        if (roomDetailsWithRating.isEmpty()) {
             statisticsDto.setRating(new BigDecimal(0));
         } else {
             final Integer sum = roomDetailsWithRating.stream().map(RoomDetailsDto::getRating).reduce(0, Integer::sum);
