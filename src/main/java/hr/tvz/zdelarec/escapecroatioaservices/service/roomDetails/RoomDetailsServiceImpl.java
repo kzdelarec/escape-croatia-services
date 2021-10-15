@@ -52,7 +52,11 @@ public class RoomDetailsServiceImpl implements RoomDetailsService {
         final RoomDetails roomDetails = roomDetailsRepository.findOneByRoomIdAndUserId(id, userId);
         LOGGER.info("Found {} ", roomDetails);
         if (roomDetails == null) {
-            return new RoomDetailsDto();
+            final RoomDetailsDto roomDetailsDto = new RoomDetailsDto();
+            roomDetailsDto.setUserId(userId);
+            roomDetailsDto.setRoomId(id);
+            roomDetailsDto.setRoomStatus(RoomStatusEnum.NOT_PLAYED);
+            return roomDetailsDto;
         } else {
             return modelMapper.map(roomDetails, RoomDetailsDto.class);
         }
