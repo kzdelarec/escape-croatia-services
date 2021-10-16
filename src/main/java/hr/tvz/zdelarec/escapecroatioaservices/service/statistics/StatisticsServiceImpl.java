@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,6 +27,11 @@ public class StatisticsServiceImpl implements StatisticsService {
      * Logger.
      */
     private static final Logger LOGGER = LoggerFactory.getLogger(ProgressService.class);
+
+    /**
+     * Big Decimal precision.
+     */
+    private static final Integer PRECISION = 2;
 
     /**
      * Autowired {@link RoomDetailsService}.
@@ -46,14 +52,14 @@ public class StatisticsServiceImpl implements StatisticsService {
             statisticsDto.setRating(new BigDecimal(0));
         } else {
             final Integer sum = roomDetailsWithRating.stream().map(RoomDetailsDto::getRating).reduce(0, Integer::sum);
-            statisticsDto.setRating(new BigDecimal(sum / roomDetailsWithRating.size()));
+            statisticsDto.setRating(BigDecimal.valueOf(sum.floatValue() / roomDetailsWithRating.size()).setScale(PRECISION, RoundingMode.HALF_UP));
         }
 
         //success rate
         if (roomDetailsWon.isEmpty()) {
             statisticsDto.setSuccessRate(new BigDecimal(0));
         } else {
-            statisticsDto.setSuccessRate(new BigDecimal(roomDetailsWon.size() / roomDetailsDtoList.size()));
+            statisticsDto.setSuccessRate(BigDecimal.valueOf((float) roomDetailsWon.size() / (float) roomDetailsDtoList.size()).setScale(PRECISION, RoundingMode.HALF_UP));
         }
 
         return statisticsDto;
