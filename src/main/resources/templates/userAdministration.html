@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<div th:replace="fragments :: head"></div>
+
+<body>
+    <div th:replace="fragments :: navbar"></div>
+    <div class="container">
+        <div class="intro">
+            <h2 class="text-center">Escape Croatia - User Administration</h2>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-striped table-bordered table-hover" style="background: white;">
+                    <thead>
+                    <tr>
+                        <th scope="col">Username</th>
+                        <th scope="col">Enabled</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:if="${platformUsers.empty}">
+                        <td colspan="2"> Nothing to show</td>
+                    </tr>
+                    <tr th:each="user : ${platformUsers}">
+                        <td><span th:text="${user.username}"> Username </span></td>
+                        <td><span th:text="${user.enabled}"> Enabled </span></td>
+                        <td>
+                            <a class="btn btn-primary" role="button" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/userAdministration/edit/{id}(id = ${user.id})}" title="edit" ><i class="fa fa-pencil"></i></a>
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div th:replace="fragments :: scripts"></div>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div th:replace="fragments :: head"></div>
+
+<body>
+    <div th:replace="fragments :: navbar"></div>
+    <div class="contact-clean">
+        <form method="post" th:action="@{/userAdministration/save}" th:object="${platformUser}">
+            <h2 class="text-center">Create Place</h2>
+            <input class="form-control" th:field="*{id}" type="hidden">
+            <div class="form-group has-success"><input class="form-control" type="text" name="name" placeholder="Name" th:field="*{username}" required></div>
+            <div class="form-group has-success"><div class="custom-control custom-switch">
+                <input type="checkbox" name="jelAktivan" th:field="*{enabled}" th:value="*{enabled}" class="custom-control-input" id="customSwitches">
+                <label class="custom-control-label" for="customSwitches">Enabled?</label>
+            </div></div>
+            <div class="form-group">
+                <div class="custom-control custom-switch" th:each="permission : ${allPermissions}">
+                    <input type="checkbox" th:field="*{authorities}" th:value="${permission}" th:id="${permission}" />
+                    <label class="custom-control-label" th:text="${permission}" th:for="${permission}"></label>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+                <button class="btn btn-primary" type="submit">Save</button>
+            </div>
+        </form>
+    </div>
+    <div th:replace="fragments :: scripts"></div>
+</body>
+
+</html>

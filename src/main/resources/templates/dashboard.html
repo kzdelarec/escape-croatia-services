@@ -11,21 +11,21 @@
                 <h2 class="text-center">Escape Croatia</h2>
             </div>
             <div class="row features">
-                <div class="col-md-4 col-sm-6 item">
+                <div class="col-md-4 col-sm-6 item" sec:authorize="hasRole('ROLE_CITIES_READ')">
                     <a th:href="@{/cities}">
                         <div class="box"><i class="material-icons icon">location_city</i>
                             <h3 class="name">Cities</h3>
                         </div>
                     </a>
                 </div>
-                <div class="col-md-4 col-sm-6 item">
+                <div class="col-md-4 col-sm-6 item" sec:authorize="hasRole('ROLE_PLACES_READ')">
                     <a th:href="@{/places}">
                         <div class="box"><i class="material-icons icon">location_on</i>
                             <h3 class="name">Places</h3>
                         </div>
                     </a>
                 </div>
-                <div class="col-md-4 col-sm-6 item">
+                <div class="col-md-4 col-sm-6 item" sec:authorize="hasRole('ROLE_ROOMS_READ')">
                     <a th:href="@{/rooms}">
                         <div class="box"><i class="material-icons icon">vpn_key</i>
                             <h3 class="name">Rooms</h3>
@@ -43,6 +43,13 @@
                     <a th:href="@{/contributors}">
                         <div class="box"><i class="material-icons icon">group_add</i>
                             <h3 class="name">Contributors</h3>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4 col-sm-6 item" sec:authorize="hasRole('ROLE_ADMIN')">
+                    <a th:href="@{/userAdministration}">
+                        <div class="box"><i class="material-icons icon">people</i>
+                            <h3 class="name">User Administration</h3>
                         </div>
                     </a>
                 </div>

@@ -11,7 +11,7 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <a class="btn btn-success" role="button" th:href="@{/places/new}" title="new" style="border-radius: 25px;padding: 8px 16px;margin: 16px 0;">New Place</a>
+                <a class="btn btn-success" role="button" sec:authorize="hasRole('ROLE_PLACES_CREATE')" th:href="@{/places/new}" title="new" style="border-radius: 25px;padding: 8px 16px;margin: 16px 0;">New Place</a>
                 <table class="table table-striped table-bordered table-hover" style="background: white;">
                     <thead>
                     <tr>
@@ -34,8 +34,8 @@
                         <td><span th:text="${place.phone}"> Phone </span></td>
                         <td><span th:text="${cities.get(place.cityId).name}"> City </span></td>
                         <td>
-                            <a class="btn btn-primary" role="button" th:href="@{/places/edit/{id}(id = ${place.id})}" title="edit" ><i class="fa fa-pencil"></i></a>
-                            <a class="btn btn-danger" role="button" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/places/delete/{id}(id = ${place.id})}" title="delete" ><i class="fa fa-trash"></i></a>
+                            <a class="btn btn-primary" role="button" sec:authorize="hasRole('ROLE_PLACES_UPDATE')" th:href="@{/places/edit/{id}(id = ${place.id})}" title="edit" ><i class="fa fa-pencil"></i></a>
+                            <a class="btn btn-danger" role="button" sec:authorize="hasRole('ROLE_PLACES_DELETE')" th:href="@{/places/delete/{id}(id = ${place.id})}" title="delete" ><i class="fa fa-trash"></i></a>
                         </td>
                     </tr>
                     </tbody>
