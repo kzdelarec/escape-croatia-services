@@ -10,6 +10,7 @@
             <h2 class="text-center">Edit user</h2>
             <input class="form-control" th:field="*{id}" type="hidden">
             <div class="form-group has-success"><input class="form-control" type="text" name="username" placeholder="Username" th:field="*{username}" required></div>
+            <div class="form-group has-success"><input class="form-control" type="email" name="email" placeholder="Email" th:field="*{email}" required></div>
             <div class="form-group has-success"><div class="custom-control custom-switch">
                 <input type="checkbox" name="jelAktivan" th:field="*{enabled}" th:value="*{enabled}" class="custom-control-input" id="customSwitches">
                 <label class="custom-control-label" for="customSwitches">Enabled?</label>

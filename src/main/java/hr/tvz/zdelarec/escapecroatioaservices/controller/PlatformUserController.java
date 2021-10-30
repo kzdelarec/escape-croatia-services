@@ -1,9 +1,12 @@
 package hr.tvz.zdelarec.escapecroatioaservices.controller;
 
 import hr.tvz.zdelarec.escapecroatioaservices.dto.AuthorityDto;
+import hr.tvz.zdelarec.escapecroatioaservices.dto.ConfirmationTokenDto;
 import hr.tvz.zdelarec.escapecroatioaservices.dto.PlatformUserDto;
 import hr.tvz.zdelarec.escapecroatioaservices.enumeration.Permission;
 import hr.tvz.zdelarec.escapecroatioaservices.service.authorityService.AuthorityService;
+import hr.tvz.zdelarec.escapecroatioaservices.service.confirmationTokenService.ConfirmationTokenService;
+import hr.tvz.zdelarec.escapecroatioaservices.service.emailService.EmailService;
 import hr.tvz.zdelarec.escapecroatioaservices.service.platformUser.PlatformUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 /**
@@ -47,6 +51,19 @@ public class PlatformUserController {
      */
     @Autowired
     private AuthorityService authorityService;
+
+    /**
+     * Autowired {@link ConfirmationTokenService}.
+     */
+    @Autowired
+    private ConfirmationTokenService confirmationTokenService;
+
+    /**
+     * Autowired {@link EmailService}.
+     */
+    @Autowired
+    private EmailService emailService;
+
 
     /**
      * Get all platform users.
@@ -113,6 +130,7 @@ public class PlatformUserController {
 
         platformUserDto.setUsername(platformUser.getUsername());
         platformUserDto.setEnabled(platformUser.getEnabled());
+        platformUserDto.setEmail(platformUser.getEmail());
         if (platformUserService.save(platformUserDto) != null) {
             authorityService.saveAll(authorityDtoList);
         }
@@ -138,10 +156,25 @@ public class PlatformUserController {
             authorityDtoList.add(newAuthority);
         }
 
-        if (platformUserService.save(platformUser) != null) {
+        final PlatformUserDto registeredUser = platformUserService.save(platformUser);
+
+        if ( registeredUser != null) {
             authorityService.saveAll(authorityDtoList);
+            createTokenAndSendMail(registeredUser.getId());
         }
 
         return "redirect:/userAdministration";
     }
+
+    private void createTokenAndSendMail(final Long id) {
+        LOGGER.debug("Creating new token");
+        final ConfirmationTokenDto confirmationTokenDto = new ConfirmationTokenDto();
+        confirmationTokenDto.setToken(UUID.randomUUID().toString());
+        confirmationTokenDto.setUserId(id.intValue());
+        confirmationTokenService.save(confirmationTokenDto);
+        LOGGER.debug("Created confirmation token {}", confirmationTokenDto.getToken());
+        emailService.sendConfirmationMail(confirmationTokenDto);
+        LOGGER.debug("Sending email");
+    }
+
 }

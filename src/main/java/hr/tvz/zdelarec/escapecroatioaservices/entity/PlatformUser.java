@@ -25,6 +25,8 @@ public class PlatformUser {
 
     private Boolean enabled;
 
+    private String email;
+
     public Long getId() {
         return id;
     }
@@ -57,6 +59,14 @@ public class PlatformUser {
         this.enabled = enabled;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(final String email) {
+        this.email = email;
+    }
+
     @Override
     public String toString() {
         return "PlatformUser{" +
@@ -64,6 +74,7 @@ public class PlatformUser {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", enabled=" + enabled +
+                ", email=" + email +
                 '}';
     }
 

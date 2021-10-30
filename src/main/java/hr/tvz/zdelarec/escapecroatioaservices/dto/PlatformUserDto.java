@@ -18,6 +18,8 @@ public class PlatformUserDto {
     private String password;
     @NotNull
     private Boolean enabled;
+    @NotNull
+    private String email;
 
     private List<String> authorities;
 
@@ -61,6 +63,14 @@ public class PlatformUserDto {
         this.authorities = authorities;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(final String email) {
+        this.email = email;
+    }
+
     @Override
     public String toString() {
         return "PlatformUserDto{" +
@@ -69,6 +79,7 @@ public class PlatformUserDto {
                 ", password='" + password + '\'' +
                 ", enabled=" + enabled +
                 ", authorities=" + authorities +
+                ", email=" + email +
                 '}';
     }
 }
