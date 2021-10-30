@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 /**
  * {@link AuthorityService} implementation.
@@ -51,5 +52,11 @@ public class AuthorityServiceImpl implements AuthorityService {
     @Override
     public AuthorityDto save(final AuthorityDto authorityDto) {
         return modelMapper.map(authorityRepository.save(modelMapper.map(authorityDto, Authority.class)), AuthorityDto.class);
+    }
+
+    @Override
+    public List<AuthorityDto> saveAll(final List<AuthorityDto> authorityDtoList) {
+        final Iterable<Authority> authorities = authorityRepository.saveAll(authorityDtoList.stream().map(authorityDto -> modelMapper.map(authorityDto, Authority.class)).collect(Collectors.toList()));
+        return StreamSupport.stream(authorities.spliterator(), false).map(authority -> modelMapper.map(authority, AuthorityDto.class)).collect(Collectors.toList());
     }
 }

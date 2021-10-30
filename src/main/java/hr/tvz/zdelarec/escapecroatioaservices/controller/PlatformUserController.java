@@ -8,6 +8,7 @@ import hr.tvz.zdelarec.escapecroatioaservices.service.platformUser.PlatformUserS
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,7 +43,7 @@ public class PlatformUserController {
     private PlatformUserService platformUserService;
 
     /**
-     * autowired {@link AuthorityService}.
+     * Autowired {@link AuthorityService}.
      */
     @Autowired
     private AuthorityService authorityService;
@@ -57,6 +60,20 @@ public class PlatformUserController {
         final List<PlatformUserDto> platformUserDtoList = platformUserService.getAllUsers();
         model.addAttribute("platformUsers", platformUserDtoList);
         return "userAdministration";
+    }
+
+    /**
+     * Displays form for a new platform user.
+     * @param model view model
+     * @return view name
+     */
+    @GetMapping(path = "/new")
+    public String newUser(final Model model) {
+        LOGGER.debug("Showing cities page");
+        final PlatformUserDto platformUserDto = new PlatformUserDto();
+        model.addAttribute("platformUser", platformUserDto);
+        model.addAttribute("allPermissions", Permission.values());
+        return "newUser";
     }
 
     /**
@@ -86,17 +103,45 @@ public class PlatformUserController {
         LOGGER.debug("Showing cities page");
         final PlatformUserDto platformUserDto = platformUserService.getById(platformUser.getId());
         authorityService.deleteAllByUsername(platformUserDto.getUsername());
+        final  List<AuthorityDto> authorityDtoList = new ArrayList<>();
         for (String authority : platformUser.getAuthorities()) {
             final AuthorityDto newAuthority = new AuthorityDto();
             newAuthority.setUsername(platformUser.getUsername());
             newAuthority.setAuthority(authority);
-            authorityService.save(newAuthority);
+            authorityDtoList.add(newAuthority);
         }
 
         platformUserDto.setUsername(platformUser.getUsername());
         platformUserDto.setEnabled(platformUser.getEnabled());
-        platformUserService.save(platformUserDto);
+        if (platformUserService.save(platformUserDto) != null) {
+            authorityService.saveAll(authorityDtoList);
+        }
 
-        return "dashboard";
+        return "redirect:/userAdministration";
+    }
+
+    /**
+     * Saves new platform user.
+     * @param model view model
+     * @param platformUser {@link PlatformUserDto} object to be saved.
+     * @return view name
+     */
+    @PostMapping(path = "/register")
+    public String registerUser(final Model model, @Validated final PlatformUserDto platformUser) {
+        LOGGER.debug("Showing cities page");
+        platformUser.setPassword(new BCryptPasswordEncoder().encode(LocalDateTime.now().toString()));
+        final  List<AuthorityDto> authorityDtoList = new ArrayList<>();
+        for (String authority : platformUser.getAuthorities()) {
+            final AuthorityDto newAuthority = new AuthorityDto();
+            newAuthority.setUsername(platformUser.getUsername());
+            newAuthority.setAuthority(authority);
+            authorityDtoList.add(newAuthority);
+        }
+
+        if (platformUserService.save(platformUser) != null) {
+            authorityService.saveAll(authorityDtoList);
+        }
+
+        return "redirect:/userAdministration";
     }
 }

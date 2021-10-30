@@ -31,4 +31,11 @@ public interface AuthorityService {
      */
     AuthorityDto save(AuthorityDto authorityDto);
 
+    /**
+     * Method for saving multiple {@link AuthorityDto} objects.
+     * @param authorityDtoList {@link AuthorityDto} objects to be saved
+     * @return saved {@link AuthorityDto} objects
+     */
+    List<AuthorityDto> saveAll(List<AuthorityDto> authorityDtoList);
+
 }

@@ -6,7 +6,7 @@
 <body>
     <div th:replace="fragments :: navbar"></div>
     <div class="contact-clean">
-        <form method="post" th:action="@{/userAdministration/save}" th:object="${platformUser}">
+        <form method="post" th:action="@{/userAdministration/register}" th:object="${platformUser}">
             <h2 class="text-center">Edit user</h2>
             <input class="form-control" th:field="*{id}" type="hidden">
             <div class="form-group has-success"><input class="form-control" type="text" name="username" placeholder="Username" th:field="*{username}" required></div>

@@ -12,7 +12,6 @@ import java.util.List;
 
 public class PlatformUserDto {
 
-    @NotNull
     private Long id;
     @NotNull
     private String username;
