@@ -166,6 +166,10 @@ public class PlatformUserController {
         return "redirect:/userAdministration";
     }
 
+    /**
+     * Method for creating new {@link ConfirmationTokenDto} and for sending email.
+     * @param id platform user identifier
+     */
     private void createTokenAndSendMail(final Long id) {
         LOGGER.debug("Creating new token");
         final ConfirmationTokenDto confirmationTokenDto = new ConfirmationTokenDto();

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div th:replace="fragments :: head"></div>
+
+<body>
+<div class="contact-clean">
+    <form style="max-width:800px; background: #f1f7fc; box-shadow: none;" th:action="@{/home}" method="post">
+        <div>
+            <div class="text-center">
+                <h2 style="width:50%; margin:0; display: inline;">You have successfully changed your password.</h2>
+                <h4><a th:href="@{/login}">Login to continue</a></h4>
+                <img src="/assets/img/registration.svg" class="row col-4 mx-auto text-center" style="margin-top: 50px; max-width: 700px">
+            </div>
+        </div>
+    </form>
+</div>
+<div th:replace="fragments :: scripts"></div>
+</body>
+
+</html>

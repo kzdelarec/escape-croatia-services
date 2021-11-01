@@ -33,7 +33,7 @@ public class EmailServiceImpl implements EmailService {
      */
     private static final Logger LOGGER = LoggerFactory.getLogger(EmailService.class);
 
-    private static final String MAIL_SENDER = "escape-croatia@noreplay.com";
+    private static final String MAIL_SENDER = "Escape Croatia <escape-croatia@noreplay.com>";
     private static final String CONFIRMATION_SUBJECT = "Your registration is successful";
     private static final String CONFIRMATION_TEMPLATE = "emailTemplate.html";
     private static final String USERNAME_PLACEHOLDER = "%USERNAME%";
@@ -93,7 +93,7 @@ public class EmailServiceImpl implements EmailService {
      * @param platformUserDto {@link PlatformUserDto} object
      * @param confirmationTokenDto {@link ConfirmationTokenDto} object
      * @param mailSender {@link JavaMailSenderImpl} object
-     * @return
+     * @return configured email message
      */
     private MimeMessage configureMailMessage(final PlatformUserDto platformUserDto, final ConfirmationTokenDto confirmationTokenDto, final JavaMailSenderImpl mailSender) {
         final MimeMessage mailMessage = mailSender.createMimeMessage();
