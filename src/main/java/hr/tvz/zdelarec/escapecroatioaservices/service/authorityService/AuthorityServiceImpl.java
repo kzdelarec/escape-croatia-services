@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 /**
  * {@link AuthorityService} implementation.
@@ -55,8 +54,28 @@ public class AuthorityServiceImpl implements AuthorityService {
     }
 
     @Override
-    public List<AuthorityDto> saveAll(final List<AuthorityDto> authorityDtoList) {
-        final Iterable<Authority> authorities = authorityRepository.saveAll(authorityDtoList.stream().map(authorityDto -> modelMapper.map(authorityDto, Authority.class)).collect(Collectors.toList()));
-        return StreamSupport.stream(authorities.spliterator(), false).map(authority -> modelMapper.map(authority, AuthorityDto.class)).collect(Collectors.toList());
+    public List<AuthorityDto> saveAll(final List<AuthorityDto> authorityDtoList, final String username) {
+        return checkAndUpdateAuthorities(authorityDtoList, username);
+    }
+
+    private List<AuthorityDto> checkAndUpdateAuthorities(final List<AuthorityDto> authorityDtoList, final String username) {
+        if (authorityDtoList.isEmpty()) {
+            deleteAllByUsername(username);
+        } else {
+            final List<AuthorityDto> originalAuthorities = getPermissionByUsername(username);
+            final List<String> newAuthorityNames = authorityDtoList.stream().map(AuthorityDto::getAuthority).collect(Collectors.toList());
+            final List<String> originalAuthorityNames = originalAuthorities.stream().map(AuthorityDto::getAuthority).collect(Collectors.toList());
+            final List<AuthorityDto> authoritiesToRemove = originalAuthorities.stream()
+                    .filter(authorityDto -> !newAuthorityNames.contains(authorityDto.getAuthority()))
+                    .collect(Collectors.toList());
+
+            final List<AuthorityDto> authoritiesToAdd = authorityDtoList.stream()
+                    .filter(authorityDto -> !originalAuthorityNames.contains(authorityDto.getAuthority()))
+                    .collect(Collectors.toList());
+
+            authorityRepository.deleteAll(authoritiesToRemove.stream().map(authorityDto -> modelMapper.map(authorityDto, Authority.class)).collect(Collectors.toList()));
+            authorityRepository.saveAll(authoritiesToAdd.stream().map(authorityDto -> modelMapper.map(authorityDto, Authority.class)).collect(Collectors.toList()));
+        }
+        return authorityDtoList;
     }
 }

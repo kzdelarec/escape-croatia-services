@@ -34,8 +34,9 @@ public interface AuthorityService {
     /**
      * Method for saving multiple {@link AuthorityDto} objects.
      * @param authorityDtoList {@link AuthorityDto} objects to be saved
+     * @param username username
      * @return saved {@link AuthorityDto} objects
      */
-    List<AuthorityDto> saveAll(List<AuthorityDto> authorityDtoList);
+    List<AuthorityDto> saveAll(List<AuthorityDto> authorityDtoList, String username);
 
 }

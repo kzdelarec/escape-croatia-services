@@ -1,12 +1,15 @@
 package hr.tvz.zdelarec.escapecroatioaservices.controller;
 
+import hr.tvz.zdelarec.escapecroatioaservices.dto.AccessControlDto;
 import hr.tvz.zdelarec.escapecroatioaservices.dto.AuthorityDto;
 import hr.tvz.zdelarec.escapecroatioaservices.dto.ConfirmationTokenDto;
 import hr.tvz.zdelarec.escapecroatioaservices.dto.PlatformUserDto;
 import hr.tvz.zdelarec.escapecroatioaservices.enumeration.Permission;
+import hr.tvz.zdelarec.escapecroatioaservices.service.accessControl.AccessControlService;
 import hr.tvz.zdelarec.escapecroatioaservices.service.authorityService.AuthorityService;
 import hr.tvz.zdelarec.escapecroatioaservices.service.confirmationTokenService.ConfirmationTokenService;
 import hr.tvz.zdelarec.escapecroatioaservices.service.emailService.EmailService;
+import hr.tvz.zdelarec.escapecroatioaservices.service.place.PlaceService;
 import hr.tvz.zdelarec.escapecroatioaservices.service.platformUser.PlatformUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -64,6 +67,18 @@ public class PlatformUserController {
     @Autowired
     private EmailService emailService;
 
+    /**
+     * Autowired {@link AccessControlService}.
+     */
+    @Autowired
+    private AccessControlService accessControlService;
+
+    /**
+     * Autowired {@link PlaceService}.
+     */
+    @Autowired
+    private PlaceService placeService;
+
 
     /**
      * Get all platform users.
@@ -90,6 +105,7 @@ public class PlatformUserController {
         final PlatformUserDto platformUserDto = new PlatformUserDto();
         model.addAttribute("platformUser", platformUserDto);
         model.addAttribute("allPermissions", Permission.values());
+        model.addAttribute("allPlaces", placeService.getAllPlaces());
         return "newUser";
     }
 
@@ -104,8 +120,10 @@ public class PlatformUserController {
         LOGGER.debug("Showing cities page");
         final PlatformUserDto platformUserDto = platformUserService.getById(id);
         platformUserDto.setAuthorities(authorityService.getPermissionByUsername(platformUserDto.getUsername()).stream().map(AuthorityDto::getAuthority).collect(Collectors.toList()));
+        platformUserDto.setAccessPlaceIds(accessControlService.getAccessByUserId(id.intValue()).stream().map(AccessControlDto::getPlaceId).collect(Collectors.toList()));
         model.addAttribute("platformUser", platformUserDto);
         model.addAttribute("allPermissions", Permission.values());
+        model.addAttribute("allPlaces", placeService.getAllPlaces());
         return "editUser";
     }
 
@@ -120,6 +138,7 @@ public class PlatformUserController {
         final PlatformUserDto platformUserDto = platformUserService.getById(id);
         LOGGER.debug("Blocking platform user with username {}", platformUserDto.getUsername());
         authorityService.deleteAllByUsername(platformUserDto.getUsername());
+        accessControlService.deleteAllByUserId(platformUserDto.getId().intValue());
         platformUserDto.setEnabled(false);
         platformUserService.save(platformUserDto);
         return "redirect:/userAdministration";
@@ -133,22 +152,22 @@ public class PlatformUserController {
      */
     @PostMapping(path = "/save")
     public String saveUser(final Model model, @Validated final PlatformUserDto platformUser) {
-        LOGGER.debug("Showing cities page");
+        LOGGER.debug("Saving user {}", platformUser.getUsername());
         final PlatformUserDto platformUserDto = platformUserService.getById(platformUser.getId());
-        authorityService.deleteAllByUsername(platformUserDto.getUsername());
-        final  List<AuthorityDto> authorityDtoList = new ArrayList<>();
-        for (String authority : platformUser.getAuthorities()) {
-            final AuthorityDto newAuthority = new AuthorityDto();
-            newAuthority.setUsername(platformUser.getUsername());
-            newAuthority.setAuthority(authority);
-            authorityDtoList.add(newAuthority);
+        if (!platformUser.getUsername().equals(platformUserDto.getUsername())) {
+            authorityService.deleteAllByUsername(platformUserDto.getUsername());
         }
+
+        final List<AuthorityDto> authorityDtoList = getAuthorityDtos(platformUser);
+
+        final List<AccessControlDto> accessControlDtoList = getAccessControlDtos(platformUser);
 
         platformUserDto.setUsername(platformUser.getUsername());
         platformUserDto.setEnabled(platformUser.getEnabled());
         platformUserDto.setEmail(platformUser.getEmail());
         if (platformUserService.save(platformUserDto) != null) {
-            authorityService.saveAll(authorityDtoList);
+            authorityService.saveAll(authorityDtoList, platformUserDto.getUsername());
+            accessControlService.saveAll(accessControlDtoList, platformUser.getId().intValue());
         }
 
         return "redirect:/userAdministration";
@@ -164,18 +183,15 @@ public class PlatformUserController {
     public String registerUser(final Model model, @Validated final PlatformUserDto platformUser) {
         LOGGER.debug("Showing cities page");
         platformUser.setPassword(new BCryptPasswordEncoder().encode(LocalDateTime.now().toString()));
-        final  List<AuthorityDto> authorityDtoList = new ArrayList<>();
-        for (String authority : platformUser.getAuthorities()) {
-            final AuthorityDto newAuthority = new AuthorityDto();
-            newAuthority.setUsername(platformUser.getUsername());
-            newAuthority.setAuthority(authority);
-            authorityDtoList.add(newAuthority);
-        }
+
+        final List<AuthorityDto> authorityDtoList = getAuthorityDtos(platformUser);
+        final List<AccessControlDto> accessControlDtoList = getAccessControlDtos(platformUser);
 
         final PlatformUserDto registeredUser = platformUserService.save(platformUser);
 
         if ( registeredUser != null) {
-            authorityService.saveAll(authorityDtoList);
+            authorityService.saveAll(authorityDtoList, platformUser.getUsername());
+            accessControlService.saveAll(accessControlDtoList, platformUser.getId().intValue());
             createTokenAndSendMail(registeredUser.getId());
         }
 
@@ -195,6 +211,38 @@ public class PlatformUserController {
         LOGGER.debug("Created confirmation token {}", confirmationTokenDto.getToken());
         emailService.sendConfirmationMail(confirmationTokenDto);
         LOGGER.debug("Sending email");
+    }
+
+    /**
+     * Generates {@link AccessControlDto} objects from form input.
+     * @param platformUser user
+     * @return list of {@link AccessControlDto} objects
+     */
+    private List<AccessControlDto> getAccessControlDtos(@Validated final PlatformUserDto platformUser) {
+        final  List<AccessControlDto> accessControlDtoList = new ArrayList<>();
+        for (Integer accessPlaceId : platformUser.getAccessPlaceIds()) {
+            final AccessControlDto accessControlDto = new AccessControlDto();
+            accessControlDto.setPlaceId(accessPlaceId);
+            accessControlDto.setUserId(platformUser.getId().intValue());
+            accessControlDtoList.add(accessControlDto);
+        }
+        return accessControlDtoList;
+    }
+
+    /**
+     * Generates {@link AuthorityDto} objects from form input.
+     * @param platformUser user
+     * @return list of {@link AuthorityDto} objects
+     */
+    private List<AuthorityDto> getAuthorityDtos(@Validated final PlatformUserDto platformUser) {
+        final List<AuthorityDto> authorityDtoList = new ArrayList<>();
+        for (String authority : platformUser.getAuthorities()) {
+            final AuthorityDto newAuthority = new AuthorityDto();
+            newAuthority.setUsername(platformUser.getUsername());
+            newAuthority.setAuthority(authority);
+            authorityDtoList.add(newAuthority);
+        }
+        return authorityDtoList;
     }
 
 }

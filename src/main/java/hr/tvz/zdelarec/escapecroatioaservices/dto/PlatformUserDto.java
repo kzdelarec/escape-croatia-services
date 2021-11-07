@@ -20,8 +20,8 @@ public class PlatformUserDto {
     private Boolean enabled;
     @NotNull
     private String email;
-
     private List<String> authorities;
+    private List<Integer> accessPlaceIds;
 
     public Long getId() {
         return id;
@@ -71,6 +71,14 @@ public class PlatformUserDto {
         this.email = email;
     }
 
+    public List<Integer> getAccessPlaceIds() {
+        return accessPlaceIds;
+    }
+
+    public void setAccessPlaceIds(final List<Integer> accessPlaceIds) {
+        this.accessPlaceIds = accessPlaceIds;
+    }
+
     @Override
     public String toString() {
         return "PlatformUserDto{" +
@@ -78,8 +86,9 @@ public class PlatformUserDto {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", enabled=" + enabled +
+                ", email='" + email + '\'' +
                 ", authorities=" + authorities +
-                ", email=" + email +
+                ", accessPlaceIds=" + accessPlaceIds +
                 '}';
     }
 }

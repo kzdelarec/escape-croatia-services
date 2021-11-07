@@ -26,6 +26,20 @@ public interface PlaceService {
     List<PlaceDto> getAllPlaces();
 
     /**
+     * Method for fetching {@link List} of {@link PlaceDto} objects.
+     * @return {@link List} of {@link PlaceDto} objects
+     */
+    List<PlaceDto> getPlacesByAuthority();
+
+    /**
+     * Method for fetching {@link List} of {@link PlaceDto} objects.
+     *
+     * @param placeIds {@link PlaceDto} identifiers
+     * @return {@link List} of {@link PlaceDto} objects
+     */
+    List<PlaceDto> getAllPlaces(List<Integer> placeIds);
+
+    /**
      * Method for fetching one {@link PlaceDto} by id.
      * @param id {@link PlaceDto} id
      * @param userId user identifier

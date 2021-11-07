@@ -1,15 +1,22 @@
 package hr.tvz.zdelarec.escapecroatioaservices.service.room;
 
+import hr.tvz.zdelarec.escapecroatioaservices.dto.AccessControlDto;
 import hr.tvz.zdelarec.escapecroatioaservices.dto.FinishedRoomDto;
+import hr.tvz.zdelarec.escapecroatioaservices.dto.PlatformUserDto;
 import hr.tvz.zdelarec.escapecroatioaservices.dto.RoomDto;
 import hr.tvz.zdelarec.escapecroatioaservices.entity.Room;
+import hr.tvz.zdelarec.escapecroatioaservices.enumeration.Permission;
 import hr.tvz.zdelarec.escapecroatioaservices.mapper.impl.RoomMapper;
 import hr.tvz.zdelarec.escapecroatioaservices.repository.RoomRepository;
+import hr.tvz.zdelarec.escapecroatioaservices.service.accessControl.AccessControlService;
 import hr.tvz.zdelarec.escapecroatioaservices.service.finishedRoom.FinishedRoomService;
+import hr.tvz.zdelarec.escapecroatioaservices.service.platformUser.PlatformUserService;
+import hr.tvz.zdelarec.escapecroatioaservices.utils.SecurityUtils;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -46,6 +53,18 @@ public class RoomServiceImpl implements RoomService {
     @Autowired
     private FinishedRoomService finishedRoomService;
 
+    /**
+     * Autowired {@link AccessControlService}.
+     */
+    @Autowired
+    private AccessControlService accessControlService;
+
+    /**
+     * Autowired {@link PlatformUserService}.
+     */
+    @Autowired
+    private PlatformUserService platformUserService;
+
     private RoomMapper roomMapper;
 
 
@@ -61,6 +80,13 @@ public class RoomServiceImpl implements RoomService {
     @Override
     public List<RoomDto> getAllRooms() {
         final List<Room> roomList = (List<Room>) roomRepository.findAll();
+        LOGGER.info("Found {} results", roomList.size());
+        return roomList.stream().map(room -> modelMapper.map(room, RoomDto.class)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<RoomDto> getAllRooms(final List<Integer> placeIds) {
+        final List<Room> roomList = (List<Room>) roomRepository.findAllByPlaceIdIn(placeIds);
         LOGGER.info("Found {} results", roomList.size());
         return roomList.stream().map(room -> modelMapper.map(room, RoomDto.class)).collect(Collectors.toList());
     }
@@ -114,5 +140,16 @@ public class RoomServiceImpl implements RoomService {
     @Override
     public void delete(final RoomDto roomDto) {
         roomRepository.delete(modelMapper.map(roomDto, Room.class));
+    }
+
+    @Override
+    public List<RoomDto> getRoomsByAuthority() {
+        if (SecurityUtils.getAuthority().contains(new SimpleGrantedAuthority(Permission.ROLE_ADMIN.toString()))) {
+            return getAllRooms();
+        } else {
+            final PlatformUserDto platformUserDto = platformUserService.getByUsername(SecurityUtils.getUsername());
+            final List<Integer> placeIds = accessControlService.getAccessByUserId(platformUserDto.getId().intValue()).stream().map(AccessControlDto::getPlaceId).collect(Collectors.toList());
+            return getAllRooms(placeIds);
+        }
     }
 }

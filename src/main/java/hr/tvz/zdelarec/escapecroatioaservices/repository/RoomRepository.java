@@ -25,4 +25,11 @@ public interface RoomRepository extends CrudRepository<Room, Integer> {
      * @return {@link List} of {@link Room} objects
      */
     List<Room> findAllByCityId(Integer id);
+
+    /**
+     * Find all rooms by place identifiers.
+     * @param placeIds place identifiers
+     * @return {@link List} of {@link Room} objects
+     */
+    List<Room> findAllByPlaceIdIn(List<Integer> placeIds);
 }

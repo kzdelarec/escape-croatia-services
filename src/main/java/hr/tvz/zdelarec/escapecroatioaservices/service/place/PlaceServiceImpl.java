@@ -1,15 +1,22 @@
 package hr.tvz.zdelarec.escapecroatioaservices.service.place;
 
+import hr.tvz.zdelarec.escapecroatioaservices.dto.AccessControlDto;
 import hr.tvz.zdelarec.escapecroatioaservices.dto.FavoriteDto;
 import hr.tvz.zdelarec.escapecroatioaservices.dto.PlaceDto;
+import hr.tvz.zdelarec.escapecroatioaservices.dto.PlatformUserDto;
 import hr.tvz.zdelarec.escapecroatioaservices.entity.Place;
+import hr.tvz.zdelarec.escapecroatioaservices.enumeration.Permission;
 import hr.tvz.zdelarec.escapecroatioaservices.mapper.impl.PlaceMapper;
 import hr.tvz.zdelarec.escapecroatioaservices.repository.PlaceRepository;
+import hr.tvz.zdelarec.escapecroatioaservices.service.accessControl.AccessControlService;
 import hr.tvz.zdelarec.escapecroatioaservices.service.favorite.FavoriteService;
+import hr.tvz.zdelarec.escapecroatioaservices.service.platformUser.PlatformUserService;
+import hr.tvz.zdelarec.escapecroatioaservices.utils.SecurityUtils;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -47,6 +54,18 @@ public class PlaceServiceImpl implements PlaceService {
     @Autowired
     private ModelMapper modelMapper;
 
+    /**
+     * Autowired {@link AccessControlService}.
+     */
+    @Autowired
+    private AccessControlService accessControlService;
+
+    /**
+     * Autowired {@link PlatformUserService}.
+     */
+    @Autowired
+    private PlatformUserService platformUserService;
+
     private PlaceMapper placeMapper;
 
     @Override
@@ -63,6 +82,24 @@ public class PlaceServiceImpl implements PlaceService {
         final List<Place> placeList = (List<Place>) placeRepository.findAll();
         LOGGER.info("Found {} results", placeList.size());
         return placeList.stream().map(place -> modelMapper.map(place, PlaceDto.class)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<PlaceDto> getAllPlaces(final List<Integer> placeIds) {
+        final List<Place> placeList = (List<Place>) placeRepository.findAllByIdIn(placeIds);
+        LOGGER.info("Found {} results", placeList.size());
+        return placeList.stream().map(place -> modelMapper.map(place, PlaceDto.class)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<PlaceDto> getPlacesByAuthority() {
+        if (SecurityUtils.getAuthority().contains(new SimpleGrantedAuthority(Permission.ROLE_ADMIN.toString()))) {
+            return getAllPlaces();
+        } else {
+            final PlatformUserDto platformUserDto = platformUserService.getByUsername(SecurityUtils.getUsername());
+            final List<Integer> placeIds = accessControlService.getAccessByUserId(platformUserDto.getId().intValue()).stream().map(AccessControlDto::getPlaceId).collect(Collectors.toList());
+            return getAllPlaces(placeIds);
+        }
     }
 
     @Override
@@ -108,7 +145,13 @@ public class PlaceServiceImpl implements PlaceService {
 
     @Override
     public PlaceDto save(final PlaceDto placeDto) {
-        return modelMapper.map(placeRepository.save(modelMapper.map(placeDto, Place.class)), PlaceDto.class);
+        final PlaceDto savedPlaceDto = modelMapper.map(placeRepository.save(modelMapper.map(placeDto, Place.class)), PlaceDto.class);
+        final PlatformUserDto platformUserDto = platformUserService.getByUsername(SecurityUtils.getUsername());
+        final AccessControlDto accessControlDto = new AccessControlDto();
+        accessControlDto.setUserId(platformUserDto.getId().intValue());
+        accessControlDto.setPlaceId(savedPlaceDto.getId());
+        accessControlService.save(accessControlDto);
+        return savedPlaceDto;
     }
 
     @Override

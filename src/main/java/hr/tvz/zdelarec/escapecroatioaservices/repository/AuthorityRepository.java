@@ -28,4 +28,6 @@ public interface AuthorityRepository extends CrudRepository<Authority, String> {
     @Transactional
     void deleteByUsername(String username);
 
+
+
 }

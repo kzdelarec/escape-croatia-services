@@ -52,4 +52,9 @@ public class PlatformUserServiceImpl implements PlatformUserService {
     public PlatformUserDto save(final PlatformUserDto platformUserDto) {
         return modelMapper.map(platformUserRepository.save(modelMapper.map(platformUserDto, PlatformUser.class)), PlatformUserDto.class);
     }
+
+    @Override
+    public PlatformUserDto getByUsername(final String username) {
+        return modelMapper.map(platformUserRepository.findByUsername(username), PlatformUserDto.class);
+    }
 }

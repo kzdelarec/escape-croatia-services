@@ -23,7 +23,7 @@
                     <tr th:if="${cities.empty}">
                         <td colspan="2"> Nothing to show</td>
                     </tr>
-                    <tr th:each="city : ${cities}" th:onClick="'window.location.href=\'/places/' + ${city.id} + '\''">
+                    <tr th:each="city : ${cities}">
                         <td><span th:text="${city.name}"> Name </span></td>
                         <td>
                             <a class="btn btn-primary" role="button" sec:authorize="hasRole('ROLE_CITIES_UPDATE')" th:href="@{/cities/edit/{id}(id = ${city.id})}" title="edit" ><i class="fa fa-pencil"></i></a>

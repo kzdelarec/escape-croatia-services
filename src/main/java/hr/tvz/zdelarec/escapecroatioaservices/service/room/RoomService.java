@@ -1,5 +1,6 @@
 package hr.tvz.zdelarec.escapecroatioaservices.service.room;
 
+import hr.tvz.zdelarec.escapecroatioaservices.dto.PlaceDto;
 import hr.tvz.zdelarec.escapecroatioaservices.dto.RoomDto;
 
 import java.util.List;
@@ -23,6 +24,20 @@ public interface RoomService {
      * @return {@link List} of {@link RoomDto} objects
      */
     List<RoomDto> getAllRooms();
+
+    /**
+     * Method for fetching {@link List} of {@link RoomDto} objects.
+     *
+     * @param placeIds {@link PlaceDto} identifiers
+     * @return {@link List} of {@link RoomDto} objects
+     */
+    List<RoomDto> getAllRooms(List<Integer> placeIds);
+
+    /**
+     * Method for fetching {@link List} of {@link RoomDto} objects by authority.
+     * @return {@link List} of {@link RoomDto} objects
+     */
+    List<RoomDto> getRoomsByAuthority();
 
     /**
      * Method for fetching one {@link RoomDto} by id.

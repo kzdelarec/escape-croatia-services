@@ -31,4 +31,11 @@ public interface PlatformUserService {
      */
     PlatformUserDto save(PlatformUserDto platformUserDto);
 
+    /**
+     * Method for fetching a {@link PlatformUserDto} object by username.
+     * @param username username
+     * @return {@link PlatformUserDto} object
+     */
+    PlatformUserDto getByUsername(String username);
+
 }

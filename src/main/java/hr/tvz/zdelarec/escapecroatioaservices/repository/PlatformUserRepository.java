@@ -17,4 +17,11 @@ public interface PlatformUserRepository extends CrudRepository<PlatformUser, Lon
      * @return {@link List} of {@link PlatformUser} objects.
      */
     List<PlatformUser> findAll();
+
+    /**
+     * Method for getting a {@link PlatformUser} object by username.
+     * @param username username
+     * @return {@link PlatformUser} object
+     */
+    PlatformUser findByUsername(String username);
 }

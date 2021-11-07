@@ -56,7 +56,7 @@ public class PlacesController {
     public String showPlaces(final Model model) {
         LOGGER.debug("Showing places page");
         final Map<Integer, CityDto> cityMap = cityService.getAllCities().stream().collect(Collectors.toMap(CityDto::getId, Function.identity()));
-        final List<PlaceDto> placeDtoList = placeService.getAllPlaces();
+        final List<PlaceDto> placeDtoList = placeService.getPlacesByAuthority();
         model.addAttribute("places", placeDtoList);
         model.addAttribute("cities", cityMap);
         return "places";
