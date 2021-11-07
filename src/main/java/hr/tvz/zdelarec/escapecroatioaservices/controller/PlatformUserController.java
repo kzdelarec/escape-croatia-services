@@ -110,6 +110,22 @@ public class PlatformUserController {
     }
 
     /**
+     * Disabled the user and removes all of his authorities.
+     * @param model view model
+     * @param id platform user identifier
+     * @return redirect
+     */
+    @GetMapping(path = "/block/{id}")
+    public String blockUser(final Model model, @PathVariable("id") final Long id) {
+        final PlatformUserDto platformUserDto = platformUserService.getById(id);
+        LOGGER.debug("Blocking platform user with username {}", platformUserDto.getUsername());
+        authorityService.deleteAllByUsername(platformUserDto.getUsername());
+        platformUserDto.setEnabled(false);
+        platformUserService.save(platformUserDto);
+        return "redirect:/userAdministration";
+    }
+
+    /**
      * Saves edited platform user.
      * @param model view model
      * @param platformUser {@link PlatformUserDto} object to be saved.

@@ -29,6 +29,7 @@
                         <td><span th:text="${user.enabled}"> Enabled </span></td>
                         <td>
                             <a class="btn btn-primary" role="button" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/userAdministration/edit/{id}(id = ${user.id})}" title="edit" ><i class="fa fa-pencil"></i></a>
+                            <a class="btn btn-danger" role="button" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/userAdministration/block/{id}(id = ${user.id})}" title="block" ><i class="fa fa-lock"></i></a>
                         </td>
                     </tr>
 
