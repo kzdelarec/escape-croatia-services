@@ -184,14 +184,12 @@ public class PlatformUserController {
         LOGGER.debug("Showing cities page");
         platformUser.setPassword(new BCryptPasswordEncoder().encode(LocalDateTime.now().toString()));
 
-        final List<AuthorityDto> authorityDtoList = getAuthorityDtos(platformUser);
-        final List<AccessControlDto> accessControlDtoList = getAccessControlDtos(platformUser);
-
         final PlatformUserDto registeredUser = platformUserService.save(platformUser);
 
         if ( registeredUser != null) {
-            authorityService.saveAll(authorityDtoList, platformUser.getUsername());
-            accessControlService.saveAll(accessControlDtoList, platformUser.getId().intValue());
+            platformUser.setId(registeredUser.getId());
+            authorityService.saveAll(getAuthorityDtos(platformUser), registeredUser.getUsername());
+            accessControlService.saveAll(getAccessControlDtos(platformUser), platformUser.getId().intValue());
             createTokenAndSendMail(registeredUser.getId());
         }
 

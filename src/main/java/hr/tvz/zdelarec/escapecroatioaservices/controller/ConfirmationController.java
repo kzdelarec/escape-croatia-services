@@ -79,7 +79,8 @@ public class ConfirmationController {
     @GetMapping("/{token}")
     public String confirmRegistration(final Model model, @PathVariable("token") final String token) {
         final PasswordResetDto passwordResetDto = new PasswordResetDto();
-        passwordResetDto.setToken(token);
+        final ConfirmationTokenDto confirmationTokenDto = confirmationTokenService.getByToken(token);
+        passwordResetDto.setToken(confirmationTokenDto.getToken());
 
         model.addAttribute(PASSWORD_RESET_DTO, passwordResetDto);
 
@@ -110,17 +111,8 @@ public class ConfirmationController {
         platformUserService.save(platformUserDto);
 
         LOGGER.debug("User activation completed for: {}", platformUserDto.getUsername());
-        return "redirect:/registrationSuccess";
-    }
 
-    /**
-     * Reset password success.
-     * @return view name
-     */
-    @GetMapping("/success")
-    public String resetPasswordSuccess() {
+        confirmationTokenService.deleteByToken(confirmationTokenDto.getToken());
         return "registrationSuccess";
     }
-
-
 }

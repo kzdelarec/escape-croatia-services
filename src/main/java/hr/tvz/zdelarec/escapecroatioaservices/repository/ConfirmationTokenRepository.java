@@ -2,6 +2,7 @@ package hr.tvz.zdelarec.escapecroatioaservices.repository;
 
 import hr.tvz.zdelarec.escapecroatioaservices.entity.ConfirmationToken;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Confirmation Token repository.
@@ -22,6 +23,7 @@ public interface ConfirmationTokenRepository extends CrudRepository<Confirmation
      * Deletes {@link ConfirmationToken} by token.
      * @param token token
      */
+    @Transactional
     void deleteOneByToken(String token);
 
 }
